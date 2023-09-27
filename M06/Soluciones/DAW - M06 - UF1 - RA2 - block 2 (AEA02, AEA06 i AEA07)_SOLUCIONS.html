@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script language="JavaScript">
+		function returnPagInici() {
+			location.href = "DAW - M06 - UF1 - RA2 - block 2 (AEA02, AEA06 i AEA07)_SOLUCIONS.html";
+		}
+
+		// Exercicis amb objectes Date:
+
+		// Exercici 1:
+		/* 
+			Fer un programa on l'usuari seleccioni entre:
+				Polse 1 si vol dinar Carn
+				Polse 2 si vol dinar Peix
+			Després li has de preguntar si vol postres (Sí/No).
+			Fer servir les funcions prompt i confirm per a demanar les dades.
+			Calcular el preu del dinar depenent de les opcions escollides per l'usuari tenint en compte:
+				Dinar carn = 23 €
+				Dinar peix = 15 €
+				Si vol postre = 3 €
+				Se li ha d'afegir un 6% de propina.
+		*/
+		function Exercici1() {
+			let error = true;
+			let preu = 0;
+			let seleccio1rPlat = prompt("Vols carn (0) o peix (1)", 0);
+
+			while (error == true) {
+				switch (seleccio1rPlat) {
+					case "0": 
+						preu = 23;
+						error = false;
+						break;
+					case "1":
+						preu = 15;
+						error = false;
+						break;
+					default:
+						seleccio1rPlat = prompt("Vols carn (0) o peix (1)", 0);
+						error = true;
+				}
+			}
+			
+			let volPostre = confirm("Vols postres?");
+			if (volPostre) {
+				preu = preu + 3;
+			}
+
+			preu = preu * 1.06;
+
+			document.writeln("Preu total (carn = 23, peix = 15, postre = 3, + 6 % propina) = " + preu + "<br><br>");
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+		// Exercici 2:
+		/*
+			Es tracta de fer un programa en JavaScript que mostri per consola l’evolució d’un joc anomenat
+			“El ratolí i el gat”. Aquest joc, disposa d’una pista circular amb 60 caselles que van de la 
+			casella 0 a la 59.
+			
+			El ratolí comença a la casella 29 i el gat comença a la 0.
+			El ratolí i el gat tiren alternativament un dau. Comença tirant un dau de sis cares el ratolí. 
+			El ratolí avança tantes caselles com indica el dau. El gat retrocedeix el número de caselles que
+			indica el dau multiplicades per dos.
+			
+			El joc s’acaba quan el gat agafa al ratolí (guanya el gat) o quan el ratolí agafa al gat (guanya
+			el ratolí).
+			Agafar significa que ambdós són a la mateixa casella.
+
+			A més, cal mostrar per consola l'evolució del joc, exemple:
+				Ratolí: He tret un 4. Vaig a la casella 33.
+				Gat: He tret un 1. Vaig a la casella 58.
+				…
+				Ratolí: He tret un 1. Vaig a la casella 40.
+				Gat: He tret un 6. Vaig a la casella 40.
+				Gat: He guanyat!
+			ALERTA!!!: feu servir l'objecte Math.random() per la tirada del dau.
+		*/
+		function Exercici2() {
+			let posRatoli = 29;
+			let posGat = 0;
+			let numDau = -1;
+			let numSaltRatoli = 0;
+			let numSaltGat = 0;
+			let fiPartida = false;
+
+			/*
+				This JavaScript function always returns a random number between min and max (both included):
+				function getRndInteger(min, max) {
+ 	 				return Math.floor(Math.random() * (max - min + 1) ) + min;
+				}
+			*/
+			while (fiPartida == false) {
+				numDau = Math.floor((Math.random() * 6) + 1);
+
+				posRatoli = (posRatoli + numDau) % 60;
+				numSaltRatoli++;
+				document.writeln("Ratolí (salt nº" + numSaltRatoli + "): he tret un " + numDau + ". Salto a la cassella " + posRatoli + "<br>");
+
+				if (posRatoli == posGat) {
+					document.writeln("Ratolí: he guanyat!!! <br><br>");
+					fiPartida = true;
+				} else {
+					numDau = Math.floor((Math.random() * 6) + 1);
+
+					posGat = (posGat - numDau * 2);
+					if (posGat < 0){
+						posGat = 59 + posGat;
+					} else {
+						posGat = posGat % 60;
+					}
+					numSaltGat++;
+					document.writeln("Gat (salt nº" + numSaltGat + "): he tret un " + numDau + ". Salto a la cassella " + posGat + "<br>");
+
+					if (posGat == posRatoli) {
+						document.writeln("Gat: he guanyat!!! <br><br>");
+						fiPartida = true;
+					}
+				}
+			}
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+		// Exercici 3:
+		/*
+			Fes un programa que demani una frase per pantalla i la retorni per consola. A més, també l’ha de
+			retornar al revès, tant a nivell de lletra com de paraula.
+				Per paraula: “Hola em dic” -> “dic em Hola”
+				Per lletra: “Hola em dic” -> “cid me aloH”
+		*/
+		function Exercici3() {
+			let frase = prompt("Escriu una frase");
+
+			document.writeln("Frase original: " + frase + "<br><br>");
+
+			let paraules = frase.split(" ");
+			document.writeln("Frase amb paraules invertides:");
+			for (let i = (paraules.length - 1); i >= 0; i--) {
+				document.writeln(" " + paraules[i]);
+			}
+			document.writeln("<br>");
+
+			let lletres = frase.split("");
+			document.writeln("Frase amb lletres invertides (v1):");
+			for (let i = (lletres.length - 1); i >= 0; i--) {
+				document.write(lletres[i]);							//Si fem writeln() afegeix un espai en blanc. 
+			}
+			document.writeln("<br>");
+
+			document.writeln("Frase amb lletres invertides (v2):");
+			for (let i = (frase.length - 1); i >= 0; i--) {
+				document.write(frase.charAt(i));
+			}
+			document.writeln("<br><br>");
+
+
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+	</script>
+</head>
+
+<body>
+	<br><br>
+	<input type="button" value="Exercici 1" onClick="Exercici1();"><br><br>
+	<input type="button" value="Exercici 2" onClick="Exercici2();"><br><br>
+	<input type="button" value="Exercici 3" onClick="Exercici3();"><br><br>
+</body>
+</html> 

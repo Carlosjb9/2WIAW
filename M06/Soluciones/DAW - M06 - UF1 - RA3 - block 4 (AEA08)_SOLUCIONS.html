@@ -1,0 +1,213 @@
+<html>
+<head>
+	<script language="JavaScript">
+		function returnPagInici() {
+			location.href = "DAW - M06 - UF1 - RA3 - block 4 (AEA08)_SOLUCIONS.html";
+		}
+
+		// Exercicis amb objectes Date:
+
+		// Exercici 1 (Navigator):
+		/* 
+			Fes un programa que saludi a l’usuari en l’idioma predefinit del navegador i li informi del
+			sistema operatiu i navegador utilitzats. 
+			Simula que el navegador podria estar en castellà, català i anglès (qualsevol de les variants d'anglès).
+			Amplia l’anterior programa indicant si la combinació de sistema operatiu i navegador està
+			suportada, o no (si userAgent retorna dades coherents).
+		*/
+		function Exercici1() {
+			let idioma = navigator.language;
+			let salutacio = "";
+
+
+			if (idioma.length > 2) {
+				idioma = idioma.substr(0, 2);
+			}
+
+			switch (idioma) {
+				case "es" : 
+					salutacio = "Hola (en castellà)";
+					break;
+				case "ca" :
+					salutacio = "Hola (en català)";
+					break;
+				case "en" :
+					salutacio = "Hello (en inglis pitinglis)";
+					break;
+				default:
+					salutacio = "IDIOMA NO RECONEGUT";
+					break;
+			}
+
+			document.writeln("SALUTACIÓ " + salutacio + "<br>");
+			document.writeln("SISTEMA OPERATIU " + navigator.platform + "<br>");
+			document.writeln("NAVEGADOR " + navigator.appName + " VERSIÓ " + navigator.appVersion + "<br><br>");
+			document.writeln("USERAGENT " + navigator.userAgent + "<br><br>");
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+
+		// Exercici 2 (Screen):
+		/*
+			Fes un programa que quan detecti que la mida de la finestra és menor al 50% de la mida total
+			disponible per a finestres, salti un missatge.
+			Jo he fet que faci la comprovació cada 5 segons.
+		*/
+		function comprovarTamanyPantalla() {
+			let tamanyPantalla = screen.height * screen.width;
+			let tamanyFinestra = window.outerHeight * window.outerWidth;
+
+			document.writeln("tamanyPantalla " + tamanyPantalla + "<br>");
+			document.writeln("tamanyFinestra " + tamanyFinestra + "<br>");
+
+			if (tamanyFinestra < (tamanyPantalla / 2)) {
+				document.writeln("TAMANY FINESTRA < 50 % TAMANY PANTALLA <br>");
+			}
+		}
+
+		function Exercici2() {
+			
+			variableInterval = setInterval(comprovarTamanyPantalla, 5000);	
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+			document.writeln("<br><br>");
+		}
+
+
+
+		// Exercici 3 (History):
+		/*
+			Fes 3 botons que implementin les funcionalitats dels botons endarrere, endavant i recarrega.
+		*/
+		function Exercici3() {
+			document.writeln("<input type='button' value='Endarrere' onClick='history.back();'> ");
+			document.writeln("<input type='button' value='Endavant' onClick='history.forward();'> ");
+			document.writeln("<input type='button' value='Recarrega' onClick='location.reload();'> ");
+
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+
+		// Exercici 4 (Location):
+		/*
+			Fes un programa que al polsar un botó carregui una nova pàgina web -la que vulguis- al mateix
+			document conservant l’historial.
+			Modifica l’anterior codi per a que no conservi l’historial.
+		*/
+		function Exercici4() {
+			document.writeln("<input type='button' value='Veure pàgina Star Trek v1' onClick='location.assign(\"https://www.ditl.org/\");'><br>");
+			document.writeln("<input type='button' value='Veure pàgina Star Trek v2' onClick='location.replace(\"https://www.ditl.org/\");'><br><br>");
+			
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+		
+		
+		
+		// Exercici 5:
+		/*
+			Demana a l'usuari un text per pantalla i la direcció d'una imatge. Fica aquest 2 valors en 1 variable
+			anomenada dades.
+			Fes un botó que al polsar-lo crei una finestra amb la meitat de l'altura i 2/3 de l'amplada de la finestra mare i
+			a més a més li has d'enviar dades.
+			Fica en la nova pantalla el text i la imatge rebudes en dades i crea un botó que serveixi per tancar la nova
+			pantalla.
+		*/
+		function obrirNovafinestra(text, urlImatge){
+			
+
+			let altura = ((window.top.outerHeight)/3)*2;
+			let amplada = (window.top.outerWidth)/2;
+
+			let caracteristiques = "width=" + Math.round(amplada) + ", height=" + Math.round(altura);
+
+			let novaFinestra = window.open("", "_blank", caracteristiques);
+
+			novaFinestra.document.writeln(text + "<br><br>");
+			novaFinestra.document.writeln('<img src="' + urlImatge + '" width="100%" onclick="window.close()"><br>');
+		}
+
+		function Exercici5() {
+			let dades = [];			// Per a definir dades com a variable de tipus array.
+			dades[0] = prompt("Introdueix un text", "Patata voladora");
+			dades[1] = prompt("Introdueix la direcció d'una imatge", "marte-en-oposicion-en-el-perihelio.webp");
+
+			//document.writeln(dades);
+			//let tamanyFinestra = window.outerHeight * window.outerWidth;
+			document.writeln('<input type="button" value="Obrir nova finestra" onClick="obrirNovafinestra(\'' + dades[0] + '\', \'' + dades[1] + '\');"> <br><br>');	
+			//¿Com li passem dades per paràmetre?
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+
+        // Exercici 6 (Window):
+		/* 
+			Tot el codi s'ha d'escriure des de la mateixa pàgina web (la pare).
+
+            Des de la teva pàgina web (la pare) obre una finestra buida (la filla) amb una amplada de 1025, una altura de 720 i que estigui en
+            les coordenades 0,0 de la pantalla.
+
+            Escriu en la nova finestra finestra, des de la finestra pare, el codi per visualitzar la imatge marte-en-oposicion-en-el-perihelio.webp.
+
+            Crida a la funció redimensionarImatge() 1 vegada després de 5 segons i en aquesta funció modifica l'amplada de l'imatge de la finestra
+            filla a 512 i l'altura a 354.
+
+            Crida cada 1 segons a la funcio mouFinestraNova() la qual ha de moure la finestra filla 10 pixels en eix X i eix Y cada vegada que es
+            cridi a la funció. La crida a la funció s'acabarà quan la posició en l'eix X sigui superior a 80 pixels.
+
+            Acaba per tancar la nova finestra des de la finestra pare.
+		*/
+		function redimensionaImatge() {
+			// Fico el redimensionat de l'imatge aquí perquè s'executi 5 segons després de carregar l'imatge en la pantalla.
+			finestraNova.document.getElementById("imatge1").width = 512;
+			finestraNova.document.getElementById("imatge1").height = 354;
+		}
+
+		function mouFinestraNova(posicio) {
+			posicio = posicio + 10;
+			finestraNova.moveBy(posicio, posicio);
+
+
+			if (finestraNova.window.screenX > 80) {
+				clearInterval(idSetInterval);
+                finestraNova.close();
+			}
+		}
+
+		function Exercici6() {
+			finestraNova = window.open("", "_blank", "width=1025,height=720,top=0,left=0");
+
+			finestraNova.document.writeln("<img src='marte-en-oposicion-en-el-perihelio.webp' id='imatge1'>");
+
+			setTimeout(redimensionaImatge,5000);
+
+			// S'executen les lines de codi de manera asíncrona i el motor de JavaScript veu que pot executar les 2 linies següents
+			// independentment de la linia anterior (la del setTimeout()) i per això es veu l'imatge directament amb la mida 512x354
+			// en comptes de amb la seva mida original (1024x709) i 5 segons després amb la mida 512x354.
+			//finestraNova.document.getElementById("imatge1").width = 512;
+			//finestraNova.document.getElementById("imatge1").height = 354;
+
+			let posicio = 0;
+			idSetInterval = setInterval(mouFinestraNova, 1000, posicio);
+				
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+	</script>
+</head>
+
+<body>
+	<br><br>
+	<input type="button" value="Exercici 1" onClick="Exercici1();"><br><br>
+	<input type="button" value="Exercici 2" onClick="Exercici2();"><br><br>
+	<input type="button" value="Exercici 3" onClick="Exercici3();"><br><br>
+	<input type="button" value="Exercici 4" onClick="Exercici4();"><br><br>
+    <input type="button" value="Exercici 5" onClick="Exercici5();"><br><br>
+    <input type="button" value="Exercici 6" onClick="Exercici6();"><br><br>
+</body>
+</html> 

@@ -1,0 +1,188 @@
+<html>
+<head>
+	<script language="JavaScript">
+		// Exercici 1:
+		document.writeln("-------- Exercici 1 --------<br>");
+
+		let text = "I'm = I ama";
+		document.writeln(text + "<br>");
+		text = "You're = You are";
+		document.writeln(text + "<br>");
+		
+	
+		// Exercici 2:
+		document.writeln("<br><br>-------- Exercici 2 --------<br>");
+
+		let dades = prompt("Introdueix un número");
+		while (isNaN(dades)) {
+			dades = prompt("Introdueix un número");
+		}
+
+		let numero = parseInt(dades);
+		document.writeln("Has instroduit el número " + numero + "<br>");
+	
+	
+	
+		// Exercici 3:
+		document.writeln("<br><br>-------- Exercici 3 --------<br>");
+
+		let num_1 = prompt("Introdueix el 1r número");
+		while (isNaN(num_1)) {
+			num_1 = prompt("Introdueix el 1r número");
+		}
+		let numero_1 = parseInt(num_1);
+
+		let num_2 = prompt("Introdueix el 2n número");
+		while (isNaN(num_2)) {
+			num_2 = prompt("Introdueix el 2n número");
+		}
+		let numero_2 = parseInt(num_2);
+
+		if (numero_1 > numero_2) {
+			document.writeln("numero_1 > numero_2 <br>");
+		} else if (numero_1 < numero_2) {
+			document.writeln("numero_1 < numero_2 <br>");
+		} else {
+			document.writeln("numero_1 = numero_2 <br>");
+		}
+
+
+		
+		// Exercici 4:
+		document.writeln("<br><br>-------- Exercici 4 --------<br>");
+		
+		num_1 = prompt("Introdueix un número");				//NO LI FICO UN let PERQUÈ EN L'EXERCICI ANTERIOR
+		while (isNaN(num_1)) {								//JA HE DECLARAT LA VARIABLE AMB UN let.
+			num_1 = prompt("Introdueix un número");
+		}
+		numero = parseInt(num_1);
+		
+		if ((numero % 2) == 0) {
+			document.writeln("El número és parell <br>");
+		} else {
+			document.writeln("El número és senar <br>");
+		}
+
+
+
+		// Exercici 5:
+		document.writeln("<br><br>-------- Exercici 5 --------<br>");
+		
+		num_1 = prompt("Introdueix el teu pes");
+		while (isNaN(num_1)) {
+			num_1 = prompt("Introdueix el teu pes");
+		}
+		let pes = parseFloat(num_1);
+
+		num_2 = prompt("Introdueix la teva altura (ex: 1,75)");
+		while (isNaN(num_2)) {
+			num_2 = prompt("Introdueix la teva altura (ex: 1,75)");
+		}
+		let altura = parseFloat(num_2);
+
+		document.writeln("El teu IMC és " + (pes / num_2**2) + " <br>");
+		
+
+
+		// Exercici 6:
+		document.writeln("<br><br>-------- Exercici 6 --------<br>");
+
+		num_1 = prompt("Introdueix una nota");
+		while (isNaN(num_1)) {
+			num_1 = prompt("Introdueix una nota");
+		}
+
+		numero = parseFloat(num_1);
+		document.writeln("numero = " + numero + " <br>");
+
+		if (numero < 5) {
+			document.writeln("Insuficient <br>");
+		} else if ((5 <= numero) && (numero < 6)) {
+			document.writeln("Suficient <br>");
+		} else if ((6 <= numero) && (numero < 7)) {
+			document.writeln("Bé <br>");
+		} else if ((7 <= numero) && (numero < 9)) {
+			document.writeln("Notable <br>");
+		} else {
+			document.writeln("Excel·lent <br>");
+		}
+
+
+
+		// Exercici 7:
+		document.writeln("<br><br>-------- Exercici 7 --------<br>");
+
+		num_1 = prompt("Introdueix un número");
+		while (isNaN(num_1)) {
+			num_1 = prompt("Introdueix un número");
+		}
+
+		numero = parseFloat(num_1);
+
+		while (0 <= numero) {
+			document.writeln("numero = " + numero + " <br>");
+			numero--;
+		}
+
+
+
+		// Exercici 8:
+		document.writeln("<br><br>-------- Exercici 7 --------<br>");
+
+		num_1 = prompt("Introdueix un número");
+		while (isNaN(num_1)) {
+			num_1 = prompt("Introdueix un número");
+		}
+
+		numero = parseFloat(num_1);
+
+		for (i = numero; 0 <= i; i--) {
+			document.writeln("numero = " + numero + " <br>");
+			numero--;
+		}
+
+
+
+		// Exercici 9:
+		document.writeln("<br><br>-------- Exercici 9 --------<br>");
+		
+		num_1 = prompt("Introdueix un número");
+		while (isNaN(num_1)) {
+			num_1 = prompt("Introdueix un número");
+		}
+
+		numero_1 = parseInt(num_1);
+
+		for (i = 0; i < numero_1; i++) {
+			for (j = 0; j < numero_1; j++) {
+				document.writeln("*");
+			}
+
+			document.writeln("<br>");
+		}
+		
+
+
+		// Exercici 10:
+		document.writeln("<br><br>-------- Exercici 10 --------<br>");
+
+		num_1 = prompt("Introdueix un número");
+		while (isNaN(num_1)) {
+			num_1 = prompt("Introdueix un número");
+		}
+
+		numero_1 = parseInt(num_1);
+
+		for (i = 0; i < 11; i++) {
+			document.writeln(numero_1 + " * " + i + " = " + numero_1*i + "<br>") ;
+		}
+
+
+				
+		document.writeln("<br><br>-------- FI --------<br>");
+	</script>
+</head>
+
+<body>
+</body>
+</html> 

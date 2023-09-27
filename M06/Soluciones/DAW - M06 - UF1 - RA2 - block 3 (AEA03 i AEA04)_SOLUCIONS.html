@@ -1,0 +1,354 @@
+<html>
+<head>
+	<script language="JavaScript">
+		function returnPagInici() {
+			location.href = "DAW - M06 - UF1 - RA2 - block 3 (AEA03 i AEA04)_SOLUCIONS.html";
+		}
+
+		// Exercicis amb objectes Date:
+
+		// Exercici 1:
+		/* 
+			Calcula els mil·lisegons que falten fins el dia 25-12-2049.
+		*/
+		function Exercici1() {
+			let dataLLunyana = new Date(2049,11,25);
+			let dataAra = Date.now();							//M'ho dona en mil·lisegons respecte a 1-1-1970.
+			let diferenciaTemporal = dataLLunyana - dataAra;
+			
+			document.writeln("dataLLunyana = " + dataLLunyana + "<br>");	
+			document.writeln("dataLLunyana.getTime() = " + dataLLunyana.getTime() + "<br>");		//Perquè m'ho doni en mil·lisegons respecte a 1-1-1970.
+			document.writeln("dataAra = " + dataAra + "<br><br>");
+			document.writeln("Distància temporal (diferenciaTemporal) = " + diferenciaTemporal + "<br>");
+
+			let diferenciaTemporalDate = new Date(diferenciaTemporal).toLocaleString();
+			document.writeln("Distància temporal (diferenciaTemporalDate) = " + diferenciaTemporalDate + "<br><br>");
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+
+		// Exercici 2:
+		/*
+			Demana una data i una hora per teclat que siguin correctes i construeix una variable de 
+			tipus Date amb aquestes dades.
+			Demana una data en format aaaa-mm-dd i fes servir alguna cosa de String per extreure els 3 
+			valors que estan separats pel guions.
+			Què passa si s’assigna amb el mètode setHours el valor 26?
+			Què passa si s’assigna amb el mètode setMinutes el valor 65?
+			Què passa si s’assigna com a dia de mes 35?
+		*/
+		function Exercici2() {
+			let dataDemanada = prompt("Introdueix una data (aaaa-mm-dd) (el mes va de 0-11)")
+			let dataDesglosada = dataDemanada.split("-");
+
+			let data = new Date(dataDesglosada[0], dataDesglosada[1], dataDesglosada[2]);	//(any, mes, dia);
+			document.writeln("data = " + data + "<br>");
+
+			let dataErrors = new Date();
+			dataErrors = data;
+			dataErrors.setHours(23);
+			document.writeln("dataErrors.setHours(23) = " + dataErrors + "<br>");
+			dataErrors.setHours(26);
+			document.writeln("dataErrors.setHours(26) = " + dataErrors + "<br>");	//Fa un mod 24, fa la volta.
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+
+		// Exercici 3:
+		/*
+			Demana la data de naixement a un usuari, i mostra l’edat en anys, mesos, dies, segons i 
+			mil·lisegons.
+		*/
+		function Exercici3() {
+			let dataAra = new Date(Date.now());				//Així va bé (crea un objecte de tipus Date).
+			//dataAra = Date.now();							//Així va malament (crea una variable de tipus number), m'ho
+                                                            //dona en mil·lisegons respecte a 1-1-1970 (un número).
+
+            /*
+            let dataProba = new Date();
+            document.writeln("dataProba = " + typeof(dataProba) + "<br>");      //Retorna object (objecte de tipus Date).
+            dataProba = new Date(Date.now());	
+            document.writeln("dataProba = " + typeof(dataProba) + "<br>");      //Retorna object (objecte de tipus Date).
+            dataProba = Date.now();	
+            document.writeln("dataProba = " + typeof(dataProba) + "<br>");      //Retorna number (variable de tipus nummber).
+                                                                                //JavaScript ha fet una conversió de tipus de
+                                                                                //manera automàtica (object --> var tipus number).
+            */
+
+			let dataDemanada = prompt("Introdueix una data (aaaa-mm-dd) (el mes va de 0-11)")
+			let dataDesglosada = dataDemanada.split("-");
+			let dataDemanadaTmp = new Date(dataDemanada[0], dataDemanada[1], dataDemanada[2]);	//(any, mes, dia);
+
+			let edatAnys = parseInt(dataAra.getFullYear()) - parseInt(dataDesglosada[0]);
+			let edatMesos = parseInt(dataAra.getMonth()) - parseInt(dataDesglosada[1]);
+			let edatDies = parseInt(dataAra.getDate()) - parseInt(dataDesglosada[2]);
+			
+			document.writeln("edatAnys = " + edatAnys + "<br>");
+			document.writeln("edatMesos = " + edatMesos + "<br>");
+			document.writeln("edatDies = " + edatDies + "<br>");
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+
+		// Exercici 4:
+		/*
+			Crea un programa que mostri per pantalla la data en format català. Per exemple: 11 de setembre
+			de 1714.
+		*/
+		function Exercici4() {
+			const nomMesos = ["gener", "febrer", "març", "abril", "maig", "juny", "juliol", "agost", "setembre", "octubre", "novembre", "december"];
+
+			let dataDemanada = prompt("Introdueix una data (aaaa-mm-dd) (el mes va de 0-11)")
+			let dataDesglosada = dataDemanada.split("-");
+			let dataDemanadaTmp = new Date(dataDesglosada[0], dataDesglosada[1], dataDesglosada[2]);	//(any, mes, dia);
+
+			/*
+			let dataDemanadaTmp = new Date();
+			dataDemanadaTmp.setFullYear(parseInt(dataDesglosada[0]));		//No fa falta fer el parseInt().
+			dataDemanadaTmp.setMonth(dataDesglosada[1]);
+			dataDemanadaTmp.setDate(dataDesglosada[2]);
+			*/
+
+			document.writeln("dataDemanadaTmp.toLocaleDateString() = " + dataDemanadaTmp.toLocaleDateString() + "<br>");
+			document.writeln("dataDemanadaTmp.toLocaleTimeString() = " + dataDemanadaTmp.toLocaleTimeString() + "<br><br>");
+
+			let nomMes = nomMesos[dataDemanadaTmp.getMonth()];
+
+			document.writeln(dataDemanadaTmp.getDate() + " de " + nomMes + " de " + dataDemanadaTmp.getFullYear() + "<br><br>");
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+		
+
+		// Exercici 5:
+		/*
+			Crea un programa que mostri per pantalla l’hora en format català. Per exemple: 01:45 tres 
+			quarts de dues (calculem únicament els quarts).
+		*/
+		function Exercici5() {
+			let data = new Date();
+			let hora = data.getHours();
+			let minuts = (data.getMinutes() % 15);
+			let quarts = Math.floor((data.getMinutes() / 15));		// Math.floor() per obtenir la part entera arrodonint cap avall sempre.
+
+			document.writeln("dataDemanadaTmp.toLocaleTimeString() = " + data.toLocaleTimeString() + "<br><br>");
+			document.writeln("hora = " + hora + ", minuts =" + minuts + ", quarts = " + quarts + "<br><br>");
+
+			document.writeln("RESULTAT: són " + quarts + " quarts i " + minuts + " minuts de "  + (hora+1) + "<br><br>");
+
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+		
+		// Exercici 6:
+		/*
+			Crea un programa que mostri l’hora per pantalla en format digital i l’actualitzi cada segon.
+			Consultar: https://www.w3schools.com/jsref/met_win_settimeout.asp
+			Consultar: https://www.w3schools.com/jsref/met_win_setinterval.asp
+		*/
+		function myStopFunction() {
+			//clearTimeout(variableInterval);		//Això funciona però s'hauria de fer servir clearInterval().
+			clearInterval(variableInterval);
+		}
+
+		function actualitzaHora(paramDeProva) {
+			dataActual = new Date(Date.now());
+
+			document.getElementById("caixaHoraria").value = dataActual.toLocaleTimeString(); // + paramDeProva;
+		}
+
+		function Exercici6() {
+			let dataActual;
+			let paramDeProva = " patata voladora"
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'><br><br>");
+			document.writeln("<input type='button' value='Aturar actualització horària' onClick='myStopFunction();'><br><br>");
+			document.writeln("<input type='text' id='caixaHoraria' name='patata' value='PATATA INICI'>");
+			
+			//variableInterval = setInterval(actualitzaHora(paramDeProva), 1000);		//Si li passem cap paràmetre no va. No es poden posar parèntesis.
+			variableInterval = setInterval(actualitzaHora, 1000);	
+			//variableInterval és var global perquè la funció myStopFunction() tingui accés.
+		}
+
+
+
+		// Exercici 7:
+		/*
+			Crea un programa on es demani a l’usuari una data, i calculi quants dies falten, o han passat
+			respecte a la data actual.
+		*/
+		function Exercici7() {
+			let dataDemanada = prompt("Introdueix una data (aaaa-mm-dd) (el mes va de 0-11)")
+			let dataDesglosada = dataDemanada.split("-");
+			let dataDemanadaTmp = new Date(dataDesglosada[0], dataDesglosada[1], dataDesglosada[2]);	//(any, mes, dia);
+
+			let dataActual = new Date(Date.now());
+
+			let diferenciaTmp = dataDemanadaTmp.getTime() - dataActual.getTime();
+			let diferenciaTmpEnDies = diferenciaTmp / (1000*60*60*24);		
+			diferenciaTmpEnDies = diferenciaTmpEnDies.toFixed(0);
+			// On: (1000*60*60*24) --> milisegundos -> segundos -> minutos -> horas -> días
+			// Math.floor() per obtenir la part entera arrodonint cap a baix sempre.
+			// x.toFixed(0) per eliminar els decimals però arrodeoneix la part entera cap a munt o cap avall.
+
+
+			document.writeln("dataDemanadaTmp = " + dataDemanadaTmp + ", dataDemanadaTmp.getTime() = " + dataDemanadaTmp.getTime() + "<br><br>");
+			document.writeln("dataActual = " + dataActual + ", dataActual.getTime() = " + dataActual.getTime() + "<br><br>");
+			document.writeln("distància temporal = " + diferenciaTmp + "<br><br>");
+			document.writeln("distància temporal en dies = " + diferenciaTmpEnDies + " dies. <br><br>");
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+		
+		// Exercici 8:
+		/*
+			Crea un comptador on es mostrin els anys, mesos, dies, hores i segons que falten fins a la 
+			inauguració dels pròxims Jocs Olímpics.
+		*/
+		function Exercici8() {
+			//let dataDemanada = prompt("Introdueix una data (aaaa-mm-dd) (el mes va de 0-11)")
+			//let dataDesglosada = dataDemanada.split("-");
+			let dataOlimpiadas = new Date("2024-07-24T23:59:59");	//(any, mes, dia);
+
+			let dataActual = new Date(Date.now());
+
+			let diferenciaAnys = dataOlimpiadas.getFullYear() - dataActual.getFullYear();
+			let diferenciaMesos = dataOlimpiadas.getMonth() - dataActual.getMonth();
+			let diferenciaDies = dataOlimpiadas.getDate() - dataActual.getDate();
+			let diferenciaHores = dataOlimpiadas.getHours() - dataActual.getHours();
+			let diferenciaMinuts = dataOlimpiadas.getMinutes() - dataActual.getMinutes();
+
+			if (diferenciaDies < 0) {
+				diferenciaDies = diferenciaDies + 30;
+                diferenciaMesos--;
+			}
+
+            if (diferenciaMesos < 0) {
+				diferenciaMesos = diferenciaMesos + 12;
+                diferenciaAnys--;
+			}
+
+			document.writeln("data Olimpiadas (24 juliol 2024) = " + dataOlimpiadas.toString() + "<br><br>");
+			document.writeln("data actual = " + dataActual + "<br><br>");
+			document.writeln("distància temporal = " + diferenciaAnys + " anys, " + diferenciaMesos + " mesos, " + diferenciaDies + " dies, " + diferenciaHores + " hores i " + diferenciaMinuts + "minuts. <br><br>");
+
+			// Una altre solució seria passar les 2 dates a milisegons --> restar --> del resultat anar treient els anys, mesos, dies,...
+			// tenint en compte que 1 any = 1000*60*60*24*365 mil·lisegons, 1 mes = 1000*60*60*24*30 mil·lisegons (considerem que tots els
+			// mesos tenen 30 dies),...
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+
+		// Exercici 9:
+		/*
+			Crea un programa on es demanin dues dates i digui quina és la més gran.
+		*/
+		function Exercici9() {
+			let dataDemanada = prompt("Introdueix una data (aaaa-mm-dd) (el mes va de 0-11)")
+			let dataDesglosada = dataDemanada.split("-");
+			let dataDemanada_1_Tmp = new Date(dataDesglosada[0], dataDesglosada[1], dataDesglosada[2]);	//(any, mes, dia);
+
+			dataDemanada = prompt("Introdueix una data (aaaa-mm-dd) (el mes va de 0-11)")
+			dataDesglosada = dataDemanada.split("-");
+			let dataDemanada_2_Tmp = new Date(dataDesglosada[0], dataDesglosada[1], dataDesglosada[2]);	//(any, mes, dia);
+
+			document.writeln("dataDemanada_1_Tmp = " + dataDemanada_1_Tmp.toDateString() + ", dataDemanada_2_Tmp = " + dataDemanada_2_Tmp.toDateString() + "<br><br>");
+
+			if (dataDemanada_1_Tmp > dataDemanada_2_Tmp) {
+				document.writeln("dataDemanada_1_Tmp > dataDemanada_2_Tmp <br><br>");
+			} else if (dataDemanada_1_Tmp < dataDemanada_2_Tmp) {
+				document.writeln("dataDemanada_1_Tmp < dataDemanada_2_Tmp <br><br>");
+			} else {
+				document.writeln("dataDemanada_1_Tmp = dataDemanada_2_Tmp <br><br>");
+			}
+
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+
+		// Exercici 10:
+		/*
+			Validar si una persona era major edat amb la data donada.
+		*/
+		function Exercici10() {
+			let dataDemanada = prompt("Introdueix una data (aaaa-mm-dd) (el mes va de 0-11)")
+			let dataDesglosada = dataDemanada.split("-");
+			let dataDemanadaTmp = new Date(dataDesglosada[0], dataDesglosada[1], dataDesglosada[2]);	//(any, mes, dia);
+
+			let dataActual = new Date(Date.now());
+
+			let diferenciaTmp = dataActual.getTime() - dataDemanadaTmp.getTime();
+			let diferenciaTmpEnDies = diferenciaTmp / (1000*60*60*24);	
+
+			if (diferenciaTmpEnDies >= 6570) {
+				// 18 anys = 365 * 18 = 6570 dies.
+				document.writeln("Major d'edat <br><br>");
+			} else {
+				document.writeln("Menor d'edat <br><br>");
+			}
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+
+
+
+		// Exercici 11:
+		/*
+			Fes un programa que demani dos números a l’usuari i retorni un valor aleatori enter comprès entre aquests
+			dos números, ambdós inclosos.
+		*/
+		function Exercici11() {
+			let numsDemanats = prompt("Introdueix 2 números separats per 1 coma (x,y)")
+			let numsDesglosats = numsDemanats.split(",");
+			let num1 = parseInt(numsDesglosats[0]);
+			let num2 = parseInt(numsDesglosats[1]);
+			let numTmp = num2 - num1;
+			let aleatori = Math.random();
+
+			aleatori = aleatori * numTmp;
+			
+			if (num1 <= num2) {
+				aleatori = aleatori + num1;
+			} else {
+				aleatori = aleatori + num2;
+			}
+
+			aleatori = Math.round(aleatori);
+
+			document.writeln("aleatori: " + aleatori + "<br><br>");
+
+			document.writeln("<input type='button' value='Return a la pàgina inicial' onClick='returnPagInici();'>");
+		}
+	</script>
+</head>
+
+<body>
+	<br><br>
+	<input type="button" value="Exercici 1" onClick="Exercici1();"><br><br>
+	<input type="button" value="Exercici 2" onClick="Exercici2();"><br><br>
+	<input type="button" value="Exercici 3" onClick="Exercici3();"><br><br>
+	<input type="button" value="Exercici 4" onClick="Exercici4();"><br><br>
+	<input type="button" value="Exercici 5" onClick="Exercici5();"><br><br>
+	<input type="button" value="Exercici 6" onClick="Exercici6();"><br><br>
+	<input type="button" value="Exercici 7" onClick="Exercici7();"><br><br>
+	<input type="button" value="Exercici 8" onClick="Exercici8();"><br><br>
+	<input type="button" value="Exercici 9" onClick="Exercici9();"><br><br>
+	<input type="button" value="Exercici 10" onClick="Exercici10();"><br><br>
+	<input type="button" value="Exercici 11" onClick="Exercici11();"><br><br>
+</body>
+</html> 
