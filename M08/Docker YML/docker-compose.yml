@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - vol1:/data
+
+volumes:
+  vol1:
