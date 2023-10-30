@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <script language="JavaScript">
+      function exercici4() {
+        localStorageSize = window.parent.localStorage.length;
+        ParentHistory = window.parent.history.length;
+        document.write(
+          "Mida del emmagatzemador de la finestra pare: " +
+            localStorageSize +
+            "<br>"
+        );
+        document.write(
+          "Mida de l'historial de la finestra pare: " + ParentHistory + "<br>"
+        );
+      }
+    </script>
+  </head>
+
+  <body onload="exercici4()"></body>
+</html>

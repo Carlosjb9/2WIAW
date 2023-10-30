@@ -1,0 +1,185 @@
+<html>
+  <head>
+    <script language="JavaScript">
+      function exercici1() {
+        var numNau = 0;
+        while (numNau == 0) {
+          var numNau = prompt("Introdueix un numero del 1 a 4", "500");
+          var nomNau = "";
+          if (!isNaN(numNau)) {
+            switch (numNau) {
+              case "1":
+                nomNau = "Enterprise 1701 D";
+                break;
+              case "2":
+                nomNau = "Donnager AC 84";
+                break;
+              case "3":
+                nomNau = "ECV 375 Orville";
+                break;
+              case "4":
+                nomNau = "AES Agamemnon OGC 434";
+                break;
+            }
+          } else {
+            numNau == 0;
+            document.write(numNau + " is not a number <br/>");
+          }
+        }
+        document.write("nomNau: " + nomNau + " <br>");
+        var numNau = "no es numero";
+        var i = 0;
+        while (isNaN(numNau)) {
+          numNau = nomNau.split(" ")[i];
+          i++;
+        }
+        document.write("numNau: " + numNau + " <br>");
+        document.write("Tipus de numNau: " + typeof numNau + " <br>");
+        const multiplicador = 2.4716;
+        document.write(
+          "numNau * multiplicador: " + numNau * multiplicador + " <br>"
+        );
+        document.write(
+          "part entera de numNau: " +
+            Math.round(numNau * multiplicador - 1) +
+            " <br>"
+        );
+
+        if (nomNau.indexOf("e") != 3) {
+          document.write(
+            "Posició on apareix la lletra 'e/E' contant a partir de la pos 3: " +
+              nomNau.indexOf("e")
+          );
+        }
+        document.write(
+          "<br>nomNau (amb 'C' --> 'c'): " + nomNau.replace("C", "c")
+        );
+      }
+
+      function exercici2() {
+        databasica = new Date(-753, 4, 21);
+        data = new Date();
+        data.setYear(-753);
+        data.setMonth(4);
+        data.setDate(21);
+        var day = data.toString().split(" ")[2];
+        var dayName = data.toString().split(" ")[0];
+        var month = data.toString().split(" ")[1];
+        var year = data.toString().split(" ")[3];
+
+        switch (dayName) {
+          case "Fri":
+            var diaFinal = "divendres";
+            break;
+          case "Mon":
+            var diaFinal = "dilluns";
+            break;
+          case "Tue":
+            var diaFinal = "dimarts";
+            break;
+          case "Wen":
+            var diaFinal = "dimecres";
+            break;
+          case "Thu":
+            var diaFinal = "dijous";
+            break;
+          case "Sat":
+            var diaFinal = "dissabte";
+            break;
+          case "Sun":
+            var diaFinal = "diumenge";
+            break;
+        }
+
+        switch (month) {
+          case "Jan":
+            var mesFinal = "gener";
+            break;
+          case "Feb":
+            var mesFinal = "febrer";
+            break;
+          case "Mar":
+            var mesFinal = "març";
+            break;
+          case "Apr":
+            var mesFinal = "abril";
+            break;
+          case "May":
+            var mesFinal = "maig";
+            break;
+          case "Jun":
+            var mesFinal = "juny";
+            break;
+          case "Jul":
+            var mesFinal = "juliol";
+            break;
+          case "Aug":
+            var mesFinal = "agost";
+            break;
+          case "Sep":
+            var mesFinal = "septembre";
+            break;
+          case "Oct":
+            var mesFinal = "octubre";
+            break;
+          case "Nov":
+            var mesFinal = "novembre";
+            break;
+          case "Dec":
+            var mesFinal = "decembre";
+            break;
+        }
+        document.write("Data fundació Roma: " + databasica + " <br><br>");
+        document.write(
+          "Data fundació Roma: el " +
+            diaFinal +
+            " " +
+            day +
+            " de " +
+            mesFinal +
+            " de " +
+            year +
+            " <br><br><br>"
+        );
+        document.write("Data fundació Roma: " + data);
+      }
+
+      function exercici3() {
+        historial = history.length;
+        localStorage.setItem("numero", historial);
+        localStorage.setItem("Centurion", "romano");
+        mida = localStorage.length;
+        var patata = localStorage.getItem("patata");
+
+        document.write("Quantitat de pàgines visitades: " + historial + "<br>");
+        document.write("Mida del emmagatzemador: " + mida + "<br>");
+        document.write("Valor de la clau patata: " + patata + "<br>");
+      }
+
+      function exercici4() {
+        media_ancho = window.innerWidth / 2;
+        media_altura = window.innerHeight / 2;
+        historialPare = history.length;
+        newWindow = window.open(
+          "webIMG_PELS_ALUMNES.html",
+          "width=" + media_ancho,
+          "height=" + media_altura
+        );
+        setTimeout(canviarTamanyFinestraFilla, 5000);
+        function canviarTamanyFinestraFilla() {
+          newWindow.resizeTo(500, 250);
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <input type="button" value="exercici 1" onclick="exercici1()" />
+    <br /><br />
+    <input type="button" value="exercici 2" onclick="exercici2()" />
+    <br /><br />
+    <input type="button" value="exercici 3" onclick="exercici3()" />
+    <br /><br />
+    <input type="button" value="exercici 4" onclick="exercici4()" />
+  </body>
+</html>
