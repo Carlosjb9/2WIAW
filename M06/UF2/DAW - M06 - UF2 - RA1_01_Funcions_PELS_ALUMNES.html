@@ -1,0 +1,305 @@
+<html>
+  <head>
+    <script language="JavaScript">
+      /*
+      		Exercici 1:
+      		Fés una funció en Javascript on se li passi un paràmetre per valor.
+      		Alerta!!!: en JavaSript només els arrays i els objectes són passats per referència)
+      		*/
+      function exercici1_1(valor) {
+        document.getElementById("resultat2").value = valor;
+      }
+
+      function exercici1() {
+        let valor;
+
+        valor = prompt(
+          "Escriu un valor que li passaràs a la funció",
+          "Viva Marte"
+        );
+
+        exercici1_1(valor);
+
+        document.getElementById("resultat2").value = valor;
+      }
+
+      /*
+      		Exercici 2:
+      		Fés una funció en Javascript on se li passi un paràmetre per referència.
+      		Alerta!!!: en JavaSript només els arrays i els objectes són passats per referència)
+      		*/
+      function exercici2_1(valor) {
+        valor.push("Donnager");
+        valor.push("Agammenon");
+        document.getElementById("resultat2").value = valor;
+      }
+
+      function exercici2() {
+        let valor = ["Viva Marte 0", "Viva Marte 1", "Viva Marte 2"];
+
+        document.getElementById("resultat1").value = valor;
+
+        exercici2_1(valor);
+
+        document.getElementById("resultat3").value = valor;
+      }
+
+      /*
+      		Exercici extra:
+      		Com faries per passar qualsevol variable (per exemple un integer) per referència -> ficant la variable en un array o en un objecte.
+
+
+      /*
+      		Exercici 3:
+      		A la funció exercici3() se li ha de passar com a paràmetre un text i una altra funció anomenada galactica().
+      		La funció galatica() tindrà un paràmetre que serà el mateix text que ha rebut exercici3(). Rebrà text i el
+      		quintuplicarà (fer servir repeat() de String).
+      		La funció exercici3() imprimirà per pantalla el text i lo que retorni galactica().
+      		*/
+      function galactica(text) {
+        //text = text + text;
+        text = text.repeat(5);
+
+        return text;
+      }
+
+      function exercici3(text, nomFuncio) {
+        document.getElementById("resultat1").value =
+          text + "   " + nomFuncio(text);
+      }
+
+      /*
+      		Exercici 4:
+      		Fés una funció en Javascript que ens retorni el número més petit dels que li passem per paràmetre.
+      		Els valors del paràmetres seran: 1975, 1963, 2000, 2019, 2015.
+      		Fes una versió (funció exercici4_1()) passant els 5 paràmetres i agafant el seu valor com sempre s'ha fet.
+      		Fes una versió (funció exercici4_2()) passant els 5 paràmetres i agafant el seu valor sense fer servir el nom dels paràmetres.
+      		Fes una versió (funció exercici4_3()) passant els 5 paràmetres i agafant el seu valor sense ficar els paràmetres en la delaració de la funció. No es pot fer servir arguments.
+      		*/
+      function exercici4_1(data1, data2, data3, data4, data5) {
+        let minim;
+
+        document.getElementById("resultat1").value = minim;
+      }
+
+      function exercici4_2(data1, data2, data3, data4, data5) {
+        let minim;
+
+        document.getElementById("resultat1").value = minim;
+      }
+
+      function exercici4_3(...argumentsRebuts) {
+        let minim;
+
+        document.getElementById("resultat1").value = minim;
+      }
+
+      /*
+      		Exercici 5:
+      		Fés una funció en JavaScript on se li passen dos valors i retorna el menor.
+      		No es bona política que hi hagi més d'1 return i a més a més el return hauria de ser l'última instrucció
+      		a executar en la funció.
+      		*/
+      function numMesPetit(num1, num2) {}
+
+      function exercici5() {
+        let num1 = prompt("Introdueix un número", 1);
+        let num2 = prompt("Introdueix un número", 10);
+
+        document.getElementById("resultat1").value = "";
+      }
+
+      /*
+      		Exercici 6:
+      		Fés una funció en JavaScript on se li passi dos arguments: 1 string i 1 caràcter.
+      		Retorna quantes vegades està el caràcter en el string.
+      		*/
+      function trobarCaracter(cadena, caracter) {}
+
+      function exercici6() {
+        let cadena = prompt("Introdueix un string", "Viva Marte");
+        let caracter = prompt("Introdueix un caràcter", "e");
+
+        document.getElementById("resultat1").value = "";
+      }
+
+      /*
+      		Exercici 7:
+      		Fés una funció en JavaScript on se li passi per paràmetre un número enter positiu i calcula el seu factorial.
+      		S'ha de fer amb funcions niades.
+      		Si el número és el 5 a llavors el resultat és 1*2*3*4*5 = 120.
+      		*/
+      function exercici7() {
+        let num = prompt("Introdueix un número", 5);
+
+        document.getElementById("resultat1").value = "";
+      }
+
+      /*
+      		Exercici 8:
+      		Fés una funció en JavaScript on se li passi per paràmetre un número enter positiu i calcula el seu factorial.
+      		S'ha de fer que la funció que calcula el factorial estigui assignada a una variable i el resultat és calcularà cridant a la variable.
+      		Si el número és el 5 a llavors el resultat és 1*2*3*4*5 = 120.
+      		*/
+
+      function exercici8() {
+        document.getElementById("resultat1").value = "";
+      }
+
+      /*
+      		Exercici 9:
+      		Sobrecarrega una funció segons si té 2 o 3 paràmetres i si té 2 a llavors si són (number, number) o (number, string).
+      		Que la funció retorni un "2: number number" si té 2 paràmetres (number, number), un "2: number string" si té 2 paràmetres (number, string) i
+      		un "3" si té 3 paràmetres. Si fiquen qualsevol altre combinació de paràmetres retorna un "-1" el qual indicarà que
+      		s'ha cridat erròneament a la funció.
+      		Fes servir les crides que apareixen en la funció exercici9() per a comprovar que va bé.
+      		*/
+      function calcularSegonsParams() {}
+
+      function exercici9() {
+        document.getElementById("resultat1").value = calcularSegonsParams();
+        document.getElementById("resultat2").value = calcularSegonsParams(5, 4);
+        document.getElementById("resultat3").value = calcularSegonsParams(
+          5,
+          "viva Marte"
+        );
+        document.getElementById("resultat4").value = calcularSegonsParams(
+          "viva Marte",
+          5
+        );
+        document.getElementById("resultat5").value = calcularSegonsParams(
+          5,
+          4,
+          3
+        );
+      }
+
+      /*
+      		Exercici 10:
+      		Agafa la solució de l'exercici 1 i converteix la funció que rebia el paràmetre en una funció fletxa.
+      		*/
+      function exercici10() {}
+
+      /*
+      		Exercici 11:
+      		Fér funcions en Javascript que ens retorni el número més petit dels que li passem per paràmetre.
+      		Els valors del paràmetres seran: 1975, 1963, 2000, 2019, 2015.
+      		Modifica les funcions exercici4_2() i exercici4_3() per fer-les servir com a funcions fletxa.
+      		*/
+      function exercici4_2_ambFlexta(data1, data2, data3, data4, data5) {}
+
+      function exercici4_3_ambFlexta(...argumentsRebuts) {}
+
+      /*
+      		Exercici 12:
+      		S'ha de reconvertir la funció niada que hi ha en l'exercici 7 en una funció fletxa.
+      		*/
+      function exercici12() {}
+
+      function esborrarCaixetes() {
+        document.getElementById("resultat1").value = "";
+        document.getElementById("resultat2").value = "";
+        document.getElementById("resultat3").value = "";
+        document.getElementById("resultat4").value = "";
+        document.getElementById("resultat5").value = "";
+      }
+    </script>
+  </head>
+
+  <body>
+    <br /><br />
+    RESULTAT 1 DELS EXERCICIS:
+    <input type="text" value="PATATA VOLADORA" id="resultat1" size="50" /><br />
+    RESULTAT 2 DELS EXERCICIS:
+    <input type="text" value="PATATA VOLADORA" id="resultat2" size="50" /><br />
+    RESULTAT 3 DELS EXERCICIS:
+    <input type="text" value="PATATA VOLADORA" id="resultat3" size="50" /><br />
+    RESULTAT 4 DELS EXERCICIS:
+    <input type="text" value="PATATA VOLADORA" id="resultat4" size="50" /><br />
+    RESULTAT 5 DELS EXERCICIS:
+    <input type="text" value="PATATA VOLADORA" id="resultat5" size="50" />
+    <br /><br />
+    <input
+      type="button"
+      value="Esborrar les caixetes"
+      onClick="esborrarCaixetes();"
+    />
+    <br /><br />
+    <input
+      type="button"
+      value="Exercici 1"
+      onClick="exercici1();"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 2"
+      onClick="exercici2();"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 3"
+      onClick="exercici3('Viva Marte', galactica);"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 4_1"
+      onClick="exercici4_1(1975, 1963, 2000, 2019, 2015);"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 4_2"
+      onClick="exercici4_2(1975, 1963, 2000, 2019, 2015);"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 4_3"
+      onClick="exercici4_3(1975, 1963, 2000, 2019, 2015);"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 5"
+      onClick="exercici5();"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 6"
+      onClick="exercici6();"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 7"
+      onClick="exercici7();"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 8"
+      onClick="exercici8();"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 9"
+      onClick="exercici9();"
+    /><br /><br />
+    <b>Exercicis de funcions niades:</b><br /><br />
+    <input
+      type="button"
+      value="Exercici 10"
+      onClick="exercici10();"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 11_2"
+      onClick="exercici4_2_ambFlexta(1975, 1963, 2000, 2019, 2015);"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 11_3"
+      onClick="exercici4_3_ambFlexta(1975, 1963, 2000, 2019, 2015);"
+    /><br /><br />
+    <input
+      type="button"
+      value="Exercici 12"
+      onClick="exercici12();"
+    /><br /><br />
+  </body>
+</html>

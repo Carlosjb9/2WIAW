@@ -1,0 +1,22 @@
+lis<%- include('header') %>
+
+<div class="container">
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="img/logo.png" id="icon" alt="User Icon" />
+      </div>
+
+      <ul>
+        <% for(var i = 0; i < users.length; i++) { %>
+          <li><%= users[i].name %></li>
+        <% } %>
+  
+      </ul>
+    </div>
+  </div>
+</div>
+<%- include('footer') %>

@@ -1,0 +1,12 @@
+<%- include('header') %> 
+<%- include('menu') %> 
+<div class="container">
+
+<h1>Information</h1>
+<% if (auth.isAuth && auth.info){ %>
+  Estas logueado <%= auth.info.name %>
+<%  }else{ %>
+  No estas logueado
+<%} %>
+<%- include('footer') %> 
+</div>
