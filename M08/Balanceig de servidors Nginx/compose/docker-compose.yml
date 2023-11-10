@@ -1,0 +1,38 @@
+# docker-compose up -d
+version: "3"
+services:
+# servidor 1 (balancejador)
+  s1.edt.cat:
+  # nom del container
+    container_name: s1
+  # imatge a utilizar pel container
+    image: jimenez-s1-nginx
+  # port de publicació 80 del nostre ordinador a 80 del container
+    ports: 
+     - "80:80"
+  # xarxa a la que pertany
+    networks:
+      - p1-nginx
+      
+  s2.edt.cat:
+    container_name: s2
+    image: jimenez-s2-nginx
+    networks:
+      - p1-nginx
+
+  s3.edt.cat:
+    container_name: s3
+    image: jimenez-s3-nginx
+    networks:
+      - p1-nginx
+
+  s4.edt.cat:
+    container_name: s4
+    image: jimenez-s4-nginx
+    networks:
+      - p1-nginx
+# xarxa creada pels contenidors
+networks:
+  p1-nginx:
+
+
