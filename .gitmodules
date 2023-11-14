@@ -1,3 +1,6 @@
 [submodule "m7_uf1_module"]
 	path = m7_uf1_module
 	url = https://gitlab.inf.edt.cat/a211002cj/m7_uf1.git
+[submodule "node"]
+	path = node
+	url = https://gitlab.inf.edt.cat/a211002cj/node.git
