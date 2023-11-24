@@ -1,0 +1,11 @@
+section {
+  display: flex;
+}
+
+div {
+  width: 100%;
+}
+
+div:nth-of-type(9n) {
+  display: none;
+}

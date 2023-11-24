@@ -1,0 +1,13 @@
+section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div {
+  width: 100%;
+  flex: 1 0 25%;
+}
+
+div:nth-of-type(9n) {
+  display: none;
+}

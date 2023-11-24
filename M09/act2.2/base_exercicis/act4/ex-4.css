@@ -1,0 +1,17 @@
+section {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
+  height: 100%;
+}
+
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+section div:nth-child(9) {
+  flex-basis: 100%;
+}
