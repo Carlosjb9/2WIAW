@@ -1,41 +1,19 @@
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    height: 50px;
+  display: flex;
+  flex-direction: row;
 }
 
 li {
-    text-align: center;
-    flex: 1;
-    transition: transform;
+  flex: 20;
 }
 
-a {
-    color: white;
-    font-size: 16px;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
- }
+li:hover {
+  transform: scale(1.5);
+}
 
-@media screen and (max-width: 600px) {
-    ul {
-       flex-direction: column; 
-       height: auto; 
-    }
- 
-    li {
-       text-align: center; 
-    }
- 
-    a {
-       line-height: 50px; 
-    }
- }
 
- a:hover {
-    transform: scale(1.3); 
- }
+@media (max-width: 600px) {
+  ul {
+    flex-direction: column;
+  }
+}
