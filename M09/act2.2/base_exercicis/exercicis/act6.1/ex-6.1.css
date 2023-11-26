@@ -1,0 +1,27 @@
+header {
+    height: 10%;
+  }
+  
+  footer {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+    height: 10%;
+  }
+  
+  main {
+    display: flex;
+    height: 80%
+  }
+  
+  nav {
+    width: 30%;
+  }
+  
+  @media (min-width: 600px) {
+    nav {
+      width: 200px;
+    }
+  }
+  

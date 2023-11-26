@@ -1,0 +1,37 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: 50px;
+}
+
+li {
+    text-align: center;
+    flex: 1;
+}
+
+a {
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+ }
+
+@media screen and (max-width: 600px) {
+    ul {
+       flex-direction: column; 
+       height: auto; 
+    }
+ 
+    li {
+       text-align: center; 
+    }
+ 
+    a {
+       line-height: 50px; 
+    }
+ }
+
