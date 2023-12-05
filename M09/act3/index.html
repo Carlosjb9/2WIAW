@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <head>
+      <!-- ... other meta tags and styles ... -->
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"
+      />
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+      <!-- ... other scripts ... -->
+    </head>
+
+    <title class="ms-2">CineHoy</title>
+  </head>
+  <script>
+    $(document).ready(function () {
+      $("#example").DataTable();
+    });
+  </script>
+  <body>
+    <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">CineHOY</a>
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse d-flex justify-content-center"
+            id="navbarNav"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"
+                  >Inicio</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="# ">Peliculas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Estrenos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Cartelera</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Reseñas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contacto</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <img
+          class="logo"
+          width="90px"
+          height="100px"
+          src="https://i.pinimg.com/736x/91/6d/0c/916d0c9bbb1a73c55d266a2e03c7da5c.jpg"
+        />
+      </nav>
+    </div>
+    <div class="backImg">
+      <h2>
+        <div class="estrenos">
+          <p class="estrenos">Últimos</p>
+          <p class="estrenos2">Estrenos</p>
+        </div>
+        <div class="center">
+          <img
+            class="imgEstrenos"
+            width="300px"
+            src="https://pics.filmaffinity.com/Spider_Man_Cruzando_el_Multiverso-642210569-large.jpg"
+          />
+          <img
+            class="imgEstrenos"
+            width="300px"
+            src="https://www.hellofriki.com/wp-content/uploads/2023/08/ninja-turtles-caos-mutante-poster.jpg"
+          />
+          <img
+            class="imgEstrenos"
+            width="355px"
+            src="https://hips.hearstapps.com/hmg-prod/images/megalodon-645a6805e6e18.jpeg?resize=980:*"
+          />
+        </div>
+        <div class="center">
+          <img
+            class="imgEstrenos"
+            width="320px"
+            src="https://s3.amazonaws.com/WGHOF/images/610/the_creator_poster__newposter.jpg"
+          />
+          <img
+            class="imgEstrenos"
+            width="320px"
+            src="https://filmspot.com.pt/images/filmes/posters/big/606870_pt.jpg"
+          />
+          <img
+            class="imgEstrenos"
+            width="320px"
+            src="https://static2.showtimes.com/poster/660x980/elemental-170247.jpg"
+          />
+        </div>
+      </h2>
+    </div>
+    <table id="example" class="display" style="width: 100%">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Año</th>
+          <th>Director</th>
+          <th>Actores</th>
+          <th>Duración</th>
+          <th>Género</th>
+          <th>País</th>
+          <th>Idioma</th>
+          <th>Premios</th>
+          <th>Valoración de la Crítica</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>La La Land</td>
+          <td>2016</td>
+          <td>Damien Chazelle</td>
+          <td>Ryan Gosling, Emma Stone</td>
+          <td>128 minutos</td>
+          <td>Romance, Musical</td>
+          <td>Estados Unidos</td>
+          <td>Inglés</td>
+          <td>6 premios Óscar</td>
+          <td>8.5/10</td>
+        </tr>
+        <tr>
+          <td>El Padrino</td>
+          <td>1972</td>
+          <td>Francis Ford Coppola</td>
+          <td>Marlon Brando, Al Pacino</td>
+          <td>175 minutos</td>
+          <td>Drama, Crimen</td>
+          <td>Estados Unidos</td>
+          <td>Inglés, Italiano</td>
+          <td>3 premios Óscar</td>
+          <td>9.2/10</td>
+        </tr>
+        <tr>
+          <td>El Rey León</td>
+          <td>1994</td>
+          <td>Rob Minkoff, Roger Allers</td>
+          <td>Matthew Broderick, Jeremy Irons</td>
+          <td>88 minutos</td>
+          <td>Animación, Aventura</td>
+          <td>Estados Unidos</td>
+          <td>Inglés</td>
+          <td>Ganadora de 2 premios Óscar</td>
+          <td>8.5/10</td>
+        </tr>
+
+        <tr>
+          <td>Interestelar</td>
+          <td>2014</td>
+          <td>Christopher Nolan</td>
+          <td>Matthew McConaughey, Anne Hathaway</td>
+          <td>169 minutos</td>
+          <td>Ciencia ficción, Drama</td>
+          <td>Estados Unidos, Reino Unido</td>
+          <td>Inglés</td>
+          <td>Nominada a 5 premios Óscar</td>
+          <td>8.6/10</td>
+        </tr>
+
+        <tr>
+          <td>El Gran Gatsby</td>
+          <td>2013</td>
+          <td>Baz Luhrmann</td>
+          <td>Leonardo DiCaprio, Carey Mulligan</td>
+          <td>143 minutos</td>
+          <td>Drama, Romance</td>
+          <td>Estados Unidos, Australia</td>
+          <td>Inglés</td>
+          <td>Ganadora de 2 premios Óscar</td>
+          <td>7.2/10</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <footer id="contacto">
+      <p>© 2023 Carlos Jimenez</p>
+      <a href="aviso_legal.html">Aviso Legal</a>
+      <a href="rgpd.html">RGPD</a>
+      <a href="cookies.html">Cookies</a>
+      <a href="faqs.html">Preguntas Frecuentes</a>
+    </footer>
+  </body>
+</html>
