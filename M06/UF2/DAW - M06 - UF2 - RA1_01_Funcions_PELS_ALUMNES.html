@@ -63,9 +63,9 @@
         return text;
       }
 
-      function exercici3(text, nomFuncio) {
+      function exercici3(text, galactica) {
         document.getElementById("resultat1").value =
-          text + "   " + nomFuncio(text);
+          text + "   " + galactica(text);
       }
 
       /*
@@ -78,7 +78,12 @@
       		*/
       function exercici4_1(data1, data2, data3, data4, data5) {
         let minim;
-
+        let numbers = [data1, data2, data3, data4, data5];
+        numbers.forEach(function (element) {
+          if (minim == undefined || element < minim) {
+            minim = element;
+          }
+        });
         document.getElementById("resultat1").value = minim;
       }
 
@@ -90,6 +95,11 @@
 
       function exercici4_3(...argumentsRebuts) {
         let minim;
+        argumentsRebuts.forEach(function (element) {
+          if (minim == undefined || element < minim) {
+            minim = element;
+          }
+        });
 
         document.getElementById("resultat1").value = minim;
       }
@@ -105,8 +115,15 @@
       function exercici5() {
         let num1 = prompt("Introdueix un número", 1);
         let num2 = prompt("Introdueix un número", 10);
-
-        document.getElementById("resultat1").value = "";
+        let menor;
+        if (num1 < num2) {
+          menor = num1;
+        } else if (num1 == num2) {
+          menor = "Són iguals";
+        } else {
+          menor = num2;
+        }
+        document.getElementById("resultat1").value = menor;
       }
 
       /*
@@ -114,13 +131,25 @@
       		Fés una funció en JavaScript on se li passi dos arguments: 1 string i 1 caràcter.
       		Retorna quantes vegades està el caràcter en el string.
       		*/
-      function trobarCaracter(cadena, caracter) {}
+      function trobarCaracter(cadena, caracter) {
+        let count;
+        cadena.forEach(function (element) {
+          if (element == caracter) {
+            count++;
+          }
+        });
+      }
 
       function exercici6() {
         let cadena = prompt("Introdueix un string", "Viva Marte");
         let caracter = prompt("Introdueix un caràcter", "e");
-
-        document.getElementById("resultat1").value = "";
+        let count = 0;
+        for (char of cadena) {
+          if (char == caracter) {
+            count++;
+          }
+        }
+        document.getElementById("resultat1").value = count;
       }
 
       /*
@@ -131,8 +160,15 @@
       		*/
       function exercici7() {
         let num = prompt("Introdueix un número", 5);
-
-        document.getElementById("resultat1").value = "";
+        let result = 0;
+        function factorial(num) {
+          if (num === 0 || num === 1) {
+            result = 1;
+          } else {
+            result = num * factorial(num - 1);
+          }
+        }
+        document.getElementById("resultat1").value = result;
       }
 
       /*
@@ -143,7 +179,14 @@
       		*/
 
       function exercici8() {
-        document.getElementById("resultat1").value = "";
+        const factorial = function factorial(num) {
+          if (num === 0 || num === 1) {
+            result = 1;
+          } else {
+            result = num * factorial(num - 1);
+          }
+        };
+        document.getElementById("resultat1").value = factorial(5);
       }
 
       /*
@@ -154,7 +197,19 @@
       		s'ha cridat erròneament a la funció.
       		Fes servir les crides que apareixen en la funció exercici9() per a comprovar que va bé.
       		*/
-      function calcularSegonsParams() {}
+      function calcularSegonsParams(...params) {
+        let result = "-1";
+        if (params.length == 2) {
+          if (isNaN(params[0]) || isNaN(params[1])) {
+            result = "2: number string";
+          } else {
+            result = "2: number number";
+          }
+        } else if (params.length == 3) {
+          result = "3";
+        }
+        return result;
+      }
 
       function exercici9() {
         document.getElementById("resultat1").value = calcularSegonsParams();
