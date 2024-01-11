@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sondes de la drassana Palas-Atenea</title>
+
+    <!--    <script type="text/javascript" src="NavComConstants.js"></script>-->
+
+    <script
+      type="module"
+      src="./inicialitzadors/NavComInicialitzador.js"
+    ></script>
+  </head>
+
+  <body>
+    <p id="checkboxsWaypoints">
+      Aquí és on s'escriuran 1 checkbox per a cada waypoint que existeixi.
+    </p>
+
+    <button type="button" id="btnCrearNovaRuta">Crear nova ruta</button
+    ><br /><br />
+
+    <script type="module">
+      //PER CULPA DEL DOM EL CODI JAVASCRIPT S'HA DE FICAR DESPRÉS DE CARREGAR PER PANTALLA TOTS ELS
+      //ELEMENTS HTML PERQUE SI NO EL DOM INTENTA ACCEDIR, AMB getElementById(), A UNS ELEMENTS QUE
+      //ENCARA NO EXISTEIXEN.
+
+      import * as NavComInicialitzador from "./inicialitzadors/NavComInicialitzador.js";
+
+      let btnCrearNovaRuta = document.getElementById("btnCrearNovaRuta");
+      btnCrearNovaRuta.addEventListener("click", function () {
+        NavComInicialitzador.NavComKamarov.crearNovaRuta();
+      });
+
+      // Si possem qualsevol funció aquí, s'autoexecuta automàticament... per tant l'hem de tenir en un altre fitxer .js .
+    </script>
+  </body>
+</html>

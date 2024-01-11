@@ -14,7 +14,13 @@ class ObjecteEstelar {
   }
 
   toString() {
-    return "nom: " + this.#nom + "\n" + "tipus: " + this.#tipus;
+    const tipusObjectesEstelars =
+      PalasAteneaConstants.TIPUSOBJECTESESTELARS[this.#tipus];
+    const distancia = Math.sqrt(this.#posicio[0] ** 2 + this.#posicio[1] ** 2);
+
+    return (
+      this.#nom + tipusObjectesEstelars + distancia + this.#id + this.#visitat
+    );
   }
 }
 
