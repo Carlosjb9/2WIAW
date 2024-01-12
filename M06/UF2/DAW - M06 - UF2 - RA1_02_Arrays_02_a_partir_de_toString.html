@@ -1,0 +1,288 @@
+<html>
+
+<head>
+    <script language="JavaScript">
+        /* 
+        Exercici 1:
+        En una estació espacial hi ha diversos magatzems on s'emmagatzemen racions d'aliments d'emergència.
+        El programa que controla el número de racions que hi ha en tota l'estació té un únic array on cada magatzem escriu quantes racions té.
+        Ex: racionsEnEstacio = [100, 200, 50, 500, 20, 2000]
+        Hem de saber quantes racions hi ha en tota l'estació espacial. S'ha de fer servir un forEach().
+        Treu en la caixeta 1 els continguts dels magatzems.
+        Treu en la caixeta 2 el text "Total racions = " i el número de racions que hi ha en total.
+        */
+        function exercici1() {
+            let racionsEnEstacio = [100, 200, 50, 500, 20, 2000];
+            let totalRacions = 0;
+
+            racionsEnEstacio.forEach(function (quantitatTmp) {
+                totalRacions = totalRacions + quantitatTmp;
+            });
+
+            document.getElementById("resultat1").value = racionsEnEstacio;
+            document.getElementById("resultat2").value = "Total racions = " + totalRacions;
+        }
+
+
+
+        /* 
+        Exercici 2:
+        Modifica l'exercici 1 per treure només la suma de les racions dels 3 magatzems més grans (els 3 que tenen més racions).
+        Haureu d'ordenar l'array amb les racions de l'estació de més gran a més petit.
+        Treu en la caixeta 1 els continguts dels magatzems.
+        Treu en la caixeta 2 el text "Total racions = " i el número de racions que hi ha en total.
+        Treu en la caixeta 3 els índex's que estàs fent servir. 
+        Com que només t'interessen els 3 primers magatzems, intenta trencar el forEach() amb un break...
+        */
+        function ordenarNumericamentInvers(a, b) {
+			if ((!isNaN(a)) && (!isNaN(b))) {
+				aNum = parseInt(a);
+				bNum = parseInt(b);
+				if (a > b) {
+					return -1;
+				} else {
+					if (a < b) {
+						return 1;
+					} else {
+						return 0;
+					}
+				}
+			}
+		}
+
+        function exercici2() {
+            let racionsEnEstacio = [100, 200, 50, 500, 20, 2000];
+            let totalRacions = 0;
+
+            racionsEnEstacio.sort(ordenarNumericamentInvers);
+
+            racionsEnEstacio.forEach(function (quantitatTmp, index) {
+                if (index < 3) {
+                    totalRacions = totalRacions + quantitatTmp;
+                    document.getElementById("resultat3").value = document.getElementById("resultat3").value + " " + index;        
+                } else {
+                    document.getElementById("resultat3").value = document.getElementById("resultat3").value + " " + index;        
+                    //break;        //NO FUNCIONA EL break. EN UN array.every() si que va el break amb un "return false".
+                }
+                
+            });
+
+            document.getElementById("resultat1").value = racionsEnEstacio;
+            document.getElementById("resultat2").value = "Total racions = " + totalRacions;
+        }
+
+
+
+        /* 
+        Exercici 3:
+        Afaga el codi de l'exercici 2 i canvia el forEach() per un every().
+        Com que només t'interessen els 3 primers magatzems, intenta trencar el every() amb un break...
+        Treu en la caixeta 4 lo que retorni l'execució del every() a veure si tots els elements de l'array retornen true.
+        */
+        function exercici3() {
+            let racionsEnEstacio = [100, 200, 50, 500, 20, 2000];
+            let totalRacions = 0;
+
+            racionsEnEstacio.sort(ordenarNumericamentInvers);
+
+            racionsEnEstacio.every(function (quantitatTmp, index) {
+                if (index < 3) {
+                    totalRacions = totalRacions + quantitatTmp;
+                    document.getElementById("resultat3").value = document.getElementById("resultat3").value + " " + index;        
+                    return true;            // Si no es posa CASCA.
+                } else {
+                    document.getElementById("resultat3").value = document.getElementById("resultat3").value + " " + index;        
+                    return false;
+                    // Si poso la línia de codi que pinta en resultat3 després del "return false", no s'executa mai.
+                }
+                
+            });
+
+            document.getElementById("resultat1").value = racionsEnEstacio;
+            document.getElementById("resultat2").value = "Total racions = " + totalRacions;
+
+            document.getElementById("resultat4").value = racionsEnEstacio.every(function (quantitatTmp, index) {
+                if (index < 3) {
+                    return true;            // Si no es posa CASCA.
+                } else {
+                    return false;
+                }
+            });
+        }
+
+
+
+        /* 
+        Exercici 4:
+        Ha arribat una nau amb racions d'emergència extres. Afaga el codi de l'exercici 3 i per a cadascun dels 3 magatzems més
+        grans suma-li 500 racions d'emergència.
+        Fes servir map().
+        Treu en la caixeta 1 els continguts originals dels magatzems.
+        Treu en la caixeta 2 els continguts finals dels magatzems.
+        */
+        function exercici4() {
+            let racionsEnEstacio = [100, 200, 50, 500, 20, 2000];
+
+            racionsEnEstacio.sort(ordenarNumericamentInvers);
+
+            let racionsEnEstacioFinal = racionsEnEstacio.map(function (quantitatTmp, index) {
+                if (index < 3) {
+                    totalRacions = quantitatTmp + 500;
+                    return totalRacions;
+                } else {
+                    return quantitatTmp;
+                }
+                
+            });
+
+            document.getElementById("resultat1").value = racionsEnEstacio;
+            document.getElementById("resultat2").value = racionsEnEstacioFinal;
+        }
+
+
+
+        /* 
+        Exercici 5:
+        Modifica l'exercici 4 per treure només les quantitats de racions dels magatzems que tinguin com a mínim 200 racions.
+        Fes servir filter() i no pots ordenar l'array que té les racions de cada magatzem.
+        Treu en la caixeta 1 els continguts originals dels magatzems.
+        Treu en la caixeta 2 els continguts dels magatzems que compleixin la condició de filtratge.
+        Treu en la caixeta 3 la suma de les racions que has ficat en la caixeta 2 fent servir una funció fletxa autoexecutable, és a
+        dir, has de fer: document.getElementById("resultat3").value = AQUÍ FUNCIÓ FLEXTA AUTOEXECUTABLE.
+        */
+        function exercici5() {
+            let racionsEnEstacio = [100, 200, 50, 500, 20, 2000];
+
+            //racionsEnEstacio.sort(ordenarNumericamentInvers);
+
+            let racionsMagatzemsMesGrans = racionsEnEstacio.filter(function (quantitatTmp, index) {
+                if (quantitatTmp >= 200) {
+                    return true;
+                } else {
+                    return false;
+                }
+                
+            });
+
+            document.getElementById("resultat1").value = racionsEnEstacio;
+            document.getElementById("resultat2").value = racionsMagatzemsMesGrans;
+            document.getElementById("resultat3").value = ((racionsMesGrans) => {
+                total = 0;
+                
+                for (let racionsTmp of racionsMesGrans) {
+                    total = total + racionsTmp;
+                }
+                
+                return total;
+            })(racionsMagatzemsMesGrans);
+        }
+
+
+
+        /* 
+        Exercici 6:
+        Volem saber si tots els magatzems tenen com a mínim 10 racions.
+        Treu en la caixeta 1 els continguts originals dels magatzems.
+        Treu en la caixeta 2 si tots els magatzems tenen com a mínim 10 racions.
+        */
+        function exercici6() {
+            let racionsEnEstacio = [100, 200, 50, 500, 20, 2000];
+
+            //racionsEnEstacio.sort(ordenarNumericamentInvers);
+
+            let totsMagatzemsAmbMin10Racions = racionsEnEstacio.every(function (quantitatTmp) {
+                if (quantitatTmp >= 10) {
+                    return true;
+                } else {
+                    return false;
+                }
+                
+            });
+
+            document.getElementById("resultat1").value = racionsEnEstacio;
+            document.getElementById("resultat2").value = ((resultat) => {
+                if (resultat == true) {
+                    return "Tots els magatzems tenen com a mínim 10 racions."
+                } else {
+                    return "NO tots els magatzems tenen com a mínim 10 racions."
+                }
+            })(totsMagatzemsAmbMin10Racions);
+        }
+
+
+
+
+        /* 
+        Exercici 7:
+        Vindrà una nau de càrrega per enportar-se totes les racions d'emergència. La nau ja porta en les bodegues 50000 racions.
+        Calcula quantes racions d'emergencia tindrà la nau una vegada s'hagin buidat els magatzems de l'estació.
+        Segons vagis sumant les racions de cada magatzem, en l'array ves ficant un 0 per indicar que aquell magatzem ja ha estat buidat.
+        Fes servir reduce().
+        Treu en la caixeta 1 els continguts originals dels magatzems.
+        Treu en la caixeta 2 el total de racions que hi ha en l'estació. Fes servir un foreach().
+        Treu en la caixeta 3 el número de racions inicials que té la nau.
+        Treu en la caixeta 4 el total de racions que té la nau una vegada hagi carregat totes les racions de tots els magatzems de l'estació.
+        Treu en la caixeta 5 els continguts dels magatzems després d'haver-los buidats.
+        */
+        function exercici7() {
+            let racionsEnEstacio = [100, 200, 50, 500, 20, 2000];
+            let totalRacionsInicialment = 0;
+
+            document.getElementById("resultat1").value = racionsEnEstacio;
+
+            racionsEnEstacio.forEach(function (quantitatTmp) {
+                totalRacionsInicialment = totalRacionsInicialment + quantitatTmp;
+            });
+
+            /* Una altre forma de sumar:
+            for (let numRacionsTmp of racionsEnEstacio) {
+                totalRacionsInicialment = totalRacionsInicialment + numRacionsTmp;
+            }
+            */
+
+            let numRacionsEnNau = racionsEnEstacio.reduce(function (totalRacionsEnEstacio, racionsEnUnMagatzemTmp, index, racionsEnEstacio) {
+                totalRacionsEnEstacio = totalRacionsEnEstacio + racionsEnUnMagatzemTmp;
+                racionsEnEstacio[index] = 0;
+
+                return totalRacionsEnEstacio;
+            }, 50000);
+
+            document.getElementById("resultat2").value = totalRacionsInicialment;
+            document.getElementById("resultat3").value = 50000;
+            document.getElementById("resultat4").value = numRacionsEnNau;
+            document.getElementById("resultat5").value = racionsEnEstacio;
+        }
+
+
+
+        function esborrarCaixetes() {
+            document.getElementById("resultat1").value = "";
+            document.getElementById("resultat2").value = "";
+            document.getElementById("resultat3").value = "";
+            document.getElementById("resultat4").value = "";
+            document.getElementById("resultat5").value = "";
+        }
+
+    </script>
+</head>
+
+<body>
+    <br><br>
+    RESULTAT 1 DELS EXERCICIS: <input type="text" value="PATATA VOLADORA" id="resultat1" size="40"><br>
+    RESULTAT 2 DELS EXERCICIS: <input type="text" value="PATATA VOLADORA" id="resultat2" size="40"><br>
+    RESULTAT 3 DELS EXERCICIS: <input type="text" value="PATATA VOLADORA" id="resultat3" size="40"><br>
+    RESULTAT 4 DELS EXERCICIS: <input type="text" value="PATATA VOLADORA" id="resultat4" size="40"><br>
+    RESULTAT 5 DELS EXERCICIS: <input type="text" value="PATATA VOLADORA" id="resultat5" size="40">
+    <br><br>
+    <input type="button" value="Esborrar les caixetes" onClick="esborrarCaixetes();">
+    <br><br>
+    <input type="button" value="Exercici 1" onClick="exercici1();"><br><br>
+    <input type="button" value="Exercici 2" onClick="exercici2();"><br><br>
+    <input type="button" value="Exercici 3" onClick="exercici3();"><br><br>
+    <input type="button" value="Exercici 4" onClick="exercici4();"><br><br>
+    <input type="button" value="Exercici 5" onClick="exercici5();"><br><br>
+    <input type="button" value="Exercici 6" onClick="exercici6();"><br><br>
+    <input type="button" value="Exercici 7" onClick="exercici7();"><br><br>
+</body>
+
+</html>

@@ -11,6 +11,7 @@ export class Ruta {
     this.#dataAlta = crearData(dataAlta); //Date
     this.#dataBaixa = crearData(dataBaixa); //Date
     this.#waypoints = [];
+    Object.preventExtensions(this);
   }
 
   set setNouWaypoint(nouWaypoint) {

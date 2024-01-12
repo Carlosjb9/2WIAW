@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sondes de la drassana Palas-Atenea</title>
+
+<!--    <script type="text/javascript" src="NavComConstants.js"></script>-->
+
+    <script type="module" src="./inicialitzadors/NavComInicialitzador.js"></script>
+</head>
+
+<body>
+    <p id="checkboxsWaypoints">Aquí és on s'escriuran 1 checkbox per a cada waypoint que existeixi.</p>
+
+    <button type="button" id="btnCrearNovaRuta">Crear nova ruta</button><br><br>
+
+
+    <button type="button" id="btnComprovarTotsWaypointsVisitats">Comprova si tots els waypoints de l'ultima ruta han estat visitats.</button><br><br>
+    <button type="button" id="btnComprovarSiCapWaypointVisitat">Comprova si algun dels waypoints de l'ultima ruta ha estat visitat.</button><br><br>
+    <button type="button" id="btnWaypointsVisitats">Retorna els id dels waypoints que hagin estat visitats de l'ultima ruta.</button><br><br>
+
+    <script type="module">
+        //PER CULPA DEL DOM EL CODI JAVASCRIPT S'HA DE FICAR DESPRÉS DE CARREGAR PER PANTALLA TOTS ELS
+        //ELEMENTS HTML PERQUE SI NO EL DOM INTENTA ACCEDIR, AMB getElementById(), A UNS ELEMENTS QUE
+        //ENCARA NO EXISTEIXEN. 
+
+        import * as NavComInicialitzador from "./inicialitzadors/NavComInicialitzador.js";
+
+        let btnCrearNovaRuta = document.getElementById("btnCrearNovaRuta");
+        btnCrearNovaRuta.addEventListener("click",  function() {NavComInicialitzador.NavComKamarov.crearNovaRuta()});
+
+
+        let btnComprovarTotsWaypointsVisitats = document.getElementById("btnComprovarTotsWaypointsVisitats");
+        btnComprovarTotsWaypointsVisitats.addEventListener("click",  function() {NavComInicialitzador.NavComKamarov.comprovarTotsWaypointsVisitats(NavComInicialitzador.NavComKamarov)});
+
+        let btnComprovarSiCapWaypointVisitat = document.getElementById("btnComprovarSiCapWaypointVisitat");
+        btnComprovarSiCapWaypointVisitat.addEventListener("click",  function() {NavComInicialitzador.NavComKamarov.comprovarSiCapWaypointVisitat(NavComInicialitzador.NavComKamarov)});
+
+        let btnWaypointsVisitats = document.getElementById("btnWaypointsVisitats");
+        btnWaypointsVisitats.addEventListener("click",  function() {NavComInicialitzador.NavComKamarov.waypointsVisitats(NavComInicialitzador.NavComKamarov)});
+
+        // Si possem qualsevol funció aquí, s'autoexecuta automàticament... per tant l'hem de tenir en un altre fitxer .js .
+    </script>
+</body>
+
+</html>

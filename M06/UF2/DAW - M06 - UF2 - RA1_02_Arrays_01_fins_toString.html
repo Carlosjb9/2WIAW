@@ -1,0 +1,192 @@
+<html>
+
+<head>
+	<script language="JavaScript">
+		/* 
+		Exercici 1:
+		Amb el mètode sort(), ordena un array numèric de més petit a més gran. 
+		Fes servir només sort() i veuràs que està ordenant alfabèticament. Envia el resultat a la caixeta resultat1.
+		Afegeix més codi perquè ordeni numèricament (com a números enters). Envia el resultat a la caixeta resultat2.
+		*/
+		function ordenarNumericament(a, b) {
+			if ((!isNaN(a)) && (!isNaN(b))) {
+				aNum = parseInt(a);
+				bNum = parseInt(b);
+				if (a < b) {
+					return -1;
+				} else {
+					if (a > b) {
+						return 1;
+					} else {
+						return 0;
+					}
+				}
+			}
+		}
+
+		function exercici1() {
+			let numeros = [1, 200, 101, 3, 14, 77, 2000, 11];
+
+			document.getElementById("resultat1").value = numeros;
+
+			numeros.sort();		// Fa una ordenació alfabètica.
+
+			document.getElementById("resultat2").value = numeros;
+
+			numeros = [1, 200, 101, 3, 14, 77, 2000, 11];
+
+			numeros.sort(ordenarNumericament);		// No li fiquem els () a ordenarNumericament de manera que
+													// al sort() li estem passant la funció i no el resultat
+													// de l'execució de la funció ordenarNumericament().
+			document.getElementById("resultat3").value = numeros;
+		}
+
+
+
+		/* 
+		Exercici 2:
+		Amb el mètode sort(), ordena alfabèticament un array sense que diferenciï entre lletres majúscules i minúscules.
+		Envia l'array original a la caixeta resultat1.
+		Envia el resultat a la caixeta resultat2.
+		La funció que et servirà per ordenar alfabèticament s'ha de dir ordenarAlfabeticament().
+		*/
+		function ordenarAlfabeticament(a, b) {
+			a = a.toString();			// Això és per si de cas entra un número. En l'exercici 4 s'ha d'ordenar paraules i números.
+			b = b.toString();
+
+			let aMinuscula = a.toLowerCase();
+			let bMinuscula = b.toLowerCase();
+
+			if (aMinuscula < bMinuscula) {
+				return -1;
+			} else {
+				if (aMinuscula > bMinuscula) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+		}
+
+		function exercici2() {
+			let naus = ["Enterprise", "donnager", "Moya", "Agammenon", "Rocinante", "NCC-1701-D", "NCC-1701-E"];
+
+			document.getElementById("resultat1").value = naus;
+
+			naus.sort(ordenarAlfabeticament);
+
+			document.getElementById("resultat2").value = naus;
+		}
+
+
+
+		/* 
+		Exercici 3:
+		Amb el mètode "sort" i "slice" fes un programa que mostri els tres números més grans emmagatzemats a un array.
+		L'array pot tenir els números desordenats inicialment.
+		*/
+		function exercici3() {
+			let numeros = [1, 200, 101, 3, 14, 77, 2000, 11];
+
+			document.getElementById("resultat1").value = numeros;
+
+			numeros.sort(ordenarNumericament);
+
+			document.getElementById("resultat2").value = numeros;
+
+			document.getElementById("resultat3").value = numeros.slice(numeros.length - 3);
+		}
+
+
+
+		/* 
+		Exercici 4:
+		A partir de l'array naus = ["Enterprise", "Donnager", 5000, "Moya", "Agammenon", 2000, "Rocinante", "NCC-1701-D", "NCC-1701-E"]
+		extreu tots els números que hi ha. Fes servir ordenarAlfabeticament(), slice() i splice(). Segurament hauràs de retocar 
+		ordenarAlfabeticament() perquè suporti números.
+		*/
+		function exercici4() {
+			let naus = ["Enterprise", "Donnager", 5000, "Moya", "Agammenon", 2000, "Rocinante", "NCC-1701-D", "NCC-1701-E"];
+			//let naus = ["Enterprise", "Donnager", "Moya", "Agammenon", "Rocinante", "NCC-1701-D", "NCC-1701-E"];
+			let nausSenseNums;
+			let numeros;
+
+			document.getElementById("resultat1").value = naus;
+
+			naus.sort(ordenarAlfabeticament);
+
+			let numerosTrobats = 0;
+			for (let valorTmp of naus) {
+				if (isNaN(valorTmp)) {
+					break;
+				} else {
+					numerosTrobats++;
+				}
+			}
+
+			if (numerosTrobats > 0) {
+				numeros = naus.splice(0, numerosTrobats);
+				nausSenseNums = naus.slice(numerosTrobats - 1);
+			} else {
+				nausSenseNums = naus;
+				numeros = "";
+			}
+			
+			document.getElementById("resultat2").value = numeros;
+			document.getElementById("resultat3").value = nausSenseNums;
+		}
+
+
+
+		/* 
+		Exercici 5:
+		Fés una funció en JavaScript que passi l’array ["A","B","C","D","E"] a ["patatata", "moniato","C","D","E","D"]. 
+		Els 2 primers elements de l'array seran substituits per "patata" i "moniato". Fer servir splice().
+		El penúltim element de l'array s'ha de passar al final de l'array. Fer servir push().
+		Utilitza un únic array. No pots extreure cap dada de l'array per a ficar-la en cap variable.
+		*/
+		function exercici5() {
+			let valors = ["A","B","C","D","E"];
+
+			document.getElementById("resultat1").value = valors;
+			
+			valors.splice(0, 2, "patata", "moniato");
+
+			document.getElementById("resultat2").value = valors;
+
+			valors.push(valors[valors.length-2]);
+
+			document.getElementById("resultat3").value = valors;
+		}
+
+
+
+		function esborrarCaixetes() {
+			document.getElementById("resultat1").value = "";
+			document.getElementById("resultat2").value = "";
+			document.getElementById("resultat3").value = "";
+			document.getElementById("resultat4").value = "";
+			document.getElementById("resultat5").value = "";
+		}
+
+	</script>
+</head>
+
+<body>
+	<br><br>
+	RESULTAT 1 DELS EXERCICIS: <input type="text" value="PATATA VOLADORA" id="resultat1" size="70"><br>
+	RESULTAT 2 DELS EXERCICIS: <input type="text" value="PATATA VOLADORA" id="resultat2" size="70"><br>
+	RESULTAT 3 DELS EXERCICIS: <input type="text" value="PATATA VOLADORA" id="resultat3" size="70"><br>
+	RESULTAT 4 DELS EXERCICIS: <input type="text" value="PATATA VOLADORA" id="resultat4" size="70"><br>
+	RESULTAT 5 DELS EXERCICIS: <input type="text" value="PATATA VOLADORA" id="resultat5" size="70">
+	<br><br>
+	<input type="button" value="Esborrar les caixetes" onClick="esborrarCaixetes();">
+	<br><br>
+	<input type="button" value="Exercici 1" onClick="exercici1();"><br><br>
+	<input type="button" value="Exercici 2" onClick="exercici2();"><br><br>
+	<input type="button" value="Exercici 3" onClick="exercici3();"><br><br>
+	<input type="button" value="Exercici 4" onClick="exercici4();"><br><br>
+	<input type="button" value="Exercici 5" onClick="exercici5();"><br><br>
+</body>
+
+</html>
