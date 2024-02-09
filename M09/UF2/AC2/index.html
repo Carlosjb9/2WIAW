@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CineHoy</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css"
+    />
+    <!-- DataTables CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"
+    />
+
+    <!-- Agregando las nuevas versiones de jQuery y DataTables -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"
+    />
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css"
+    />
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
+  </head>
+
+  <style>
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon:after {
+      content: ">";
+      font-size: 55px;
+      color: rgb(163, 36, 36);
+    }
+
+    .carousel-control-prev-icon:after {
+      content: "<";
+      font-size: 55px;
+      color: rgb(163, 36, 36);
+    }
+
+    .carousel-item img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: auto;
+      max-height: 400px;
+      max-width: 300px;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+    }
+
+    .navbar-nav {
+      margin-left: auto;
+    }
+
+    .navbar-toggler {
+      border: 2px solid rgb(163, 36, 36);
+    }
+
+    .navbar-toggler-icon {
+      background-color: rgb(163, 36, 36);
+    }
+
+    .logo {
+      margin-left: auto;
+    }
+
+    .backImg {
+      background-color: #f8f9fa;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    .estrenos {
+      font-size: 24px;
+      font-weight: bold;
+      color: rgb(163, 36, 36);
+    }
+
+    .estrenos2 {
+      font-size: 32px;
+      font-weight: bold;
+      color: rgb(163, 36, 36);
+    }
+
+    .table-responsive {
+      margin-top: 20px;
+    }
+
+    #contacto {
+      background-color: #f8f9fa;
+      padding: 20px;
+      margin-top: 20px;
+      border-top: 1px solid rgb(163, 36, 36);
+    }
+    td.img img {
+      max-width: 250px;
+      max-height: 300px;
+      display: block;
+      margin: auto;
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">CineHOY</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Peliculas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#carouselExampleControls">Estrenos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#example">Cartelera</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#example">Reseñas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#example">Contacto</a>
+            </li>
+          </ul>
+        </div>
+        <img
+          class="logo"
+          width="90px"
+          height="100px"
+          src="https://i.pinimg.com/736x/91/6d/0c/916d0c9bbb1a73c55d266a2e03c7da5c.jpg"
+        />
+      </div>
+    </nav>
+
+    <div class="container-fluid backImg">
+      <h2 class="text-center">
+        <div class="estrenos">
+          <p class="estrenos">Últimos</p>
+          <p class="estrenos2">Estrenos</p>
+        </div>
+        <div
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="https://es.web.img3.acsta.net/pictures/23/02/06/17/15/3568166.jpg"
+                class="d-block w-100"
+                alt="..."
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BMmY1ODUzZGItNDllOS00MDBhLTg4NmUtYjU4YjUxMGNlYmMwXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_FMjpg_UX1000_.jpg"
+                class="d-block w-100"
+                alt="..."
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://pics.filmaffinity.com/Wonka-113186318-large.jpg"
+                class="d-block w-100"
+                alt="..."
+              />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </h2>
+    </div>
+    <div>
+      <button id="target">Nueva fila</button>
+      <button id="remove">Eliminar filas seleccionadas</button>
+    </div>
+    <div class="container">
+      <h3 class="text-center">Cartelera</h3>
+      <div class="table-responsive">
+        <table id="example" class="table table-striped" style="width: 100%">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Título</th>
+              <th>Año</th>
+              <th>Director</th>
+              <th>Actores</th>
+              <th>Duración</th>
+              <th>Género</th>
+              <th>País</th>
+              <th>Idioma</th>
+              <th>Premios</th>
+              <th>Valoración de la Crítica</th>
+              <th>Checkbox</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="img">
+                <img
+                  src="https://pics.filmaffinity.com/la_la_land-262021831-mmed.jpg"
+                />
+              </td>
+              <td>La La Land</td>
+              <td>2016</td>
+              <td>Damien Chazelle</td>
+              <td>Ryan Gosling, Emma Stone</td>
+              <td>128 minutos</td>
+              <td>Romance, Musical</td>
+              <td>Estados Unidos</td>
+              <td>Inglés</td>
+              <td>6 premios Óscar</td>
+              <td>8.5/10</td>
+              <td><input type="checkbox" value="" /></td>
+            </tr>
+            <tr>
+              <td class="img">
+                <img
+                  src="https://es.web.img3.acsta.net/pictures/18/06/12/12/12/0117051.jpg?coixp=49&coiyp=27"
+                />
+              </td>
+              <td>El Padrino</td>
+              <td>1972</td>
+              <td>Francis Ford Coppola</td>
+              <td>Marlon Brando, Al Pacino</td>
+              <td>175 minutos</td>
+              <td>Drama, Crimen</td>
+              <td>Estados Unidos</td>
+              <td>Inglés, Italiano</td>
+              <td>3 premios Óscar</td>
+              <td>9.2/10</td>
+              <td><input type="checkbox" value="" /></td>
+            </tr>
+            <tr>
+              <td class="img">
+                <img
+                  src="https://es.web.img3.acsta.net/medias/nmedia/18/68/20/31/19785394.jpg?coixp=47&coiyp=41"
+                />
+              </td>
+              <td>El Rey León</td>
+              <td>1994</td>
+              <td>Rob Minkoff, Roger Allers</td>
+              <td>Matthew Broderick, Jeremy Irons</td>
+              <td>88 minutos</td>
+              <td>Animación, Aventura</td>
+              <td>Estados Unidos</td>
+              <td>Inglés</td>
+              <td>Ganadora de 2 premios Óscar</td>
+              <td>8.5/10</td>
+              <td><input type="checkbox" value="" /></td>
+            </tr>
+
+            <tr>
+              <td class="img">
+                <img
+                  src="https://m.media-amazon.com/images/S/pv-target-images/79194981293eabf6620ece96eb5a9c1fffa04d3374ae12986e0748800b37b9cf.jpg"
+                />
+              </td>
+              <td>Interestelar</td>
+              <td>2014</td>
+              <td>Christopher Nolan</td>
+              <td>Matthew McConaughey, Anne Hathaway</td>
+              <td>169 minutos</td>
+              <td>Ciencia ficción, Drama</td>
+              <td>Estados Unidos, Reino Unido</td>
+              <td>Inglés</td>
+              <td>Nominada a 5 premios Óscar</td>
+              <td>8.6/10</td>
+              <td><input type="checkbox" value="" /></td>
+            </tr>
+
+            <tr>
+              <td class="img">
+                <img
+                  src="https://pics.filmaffinity.com/El_gran_Gatsby-737648170-large.jpg"
+                />
+              </td>
+              <td>El Gran Gatsby</td>
+              <td>2013</td>
+              <td>Baz Luhrmann</td>
+              <td>Leonardo DiCaprio, Carey Mulligan</td>
+              <td>143 minutos</td>
+              <td>Drama, Romance</td>
+              <td>Estados Unidos, Australia</td>
+              <td>Inglés</td>
+              <td>Ganadora de 2 premios Óscar</td>
+              <td>7.2/10</td>
+              <td><input type="checkbox" value="" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer id="contacto" class="text-center mt-4">
+      <p>© 2023 Carlos Jimenez</p>
+      <a href="aviso_legal.html">Aviso Legal</a>
+      <a href="rgpd.html">RGPD</a>
+      <a href="cookies.html">Cookies</a>
+      <a href="faqs.html">Preguntas Frecuentes</a>
+    </footer>
+    <script>
+      $(document).ready(function () {
+        // Inicializar DataTables
+        var table = $("#example").DataTable({
+          stripeClasses: ["bg-light", "bg-secondary"],
+          dom: "Bfrtip",
+          buttons: ["copy", "excel"],
+          columns: [
+            { name: "Image" },
+            { name: "Title" },
+            { name: "Year" },
+            { name: "Director" },
+            { name: "Actors" },
+            { name: "Duration" },
+            { name: "Genre" },
+            { name: "Country" },
+            { name: "Language" },
+            { name: "Awards" },
+            { name: "Rating" },
+            { name: "Checkbox" },
+          ],
+        });
+
+        table.row(2).remove().draw();
+
+        $("#target").on("click", function () {
+          var tr = $(
+            "<tr><td class='img'>" +
+              "<img src='https://media.istockphoto.com/id/1145179413/es/vector/cinta-roja-con-la-inscripcion-new-ilustracion-vectorial.jpg?s=612x612&w=0&k=20&c=4H-_LxLh1VwMgo5bJdtRTW7_O7tFXUEcBM48I1fQuqg=' />" +
+              "</td>" +
+              "<td>New Line</td>" +
+              "<td>2024</td>" +
+              "<td>Carlos Jimenez</td>" +
+              "<td></td>" +
+              "<td></td>" +
+              "<td>Exemple</td>" +
+              "<td>Spain</td>" +
+              "<td>English</td>" +
+              "<td></td>" +
+              "<td>10/10</td>" +
+              "<input type='checkbox' /></tr>"
+          );
+
+          $(tr).hide().insertAfter("tr:last").fadeIn(1000);
+        });
+
+        $("#remove").on("click", function () {
+          $("input[type=checkbox]:checked").each(function () {
+            var row = $(this).closest("tr");
+            row.fadeOut(500, function () {
+              table.row(row).remove().draw();
+            });
+          });
+        });
+
+        $("#example tbody")
+          .on("mouseenter", "tr", function () {
+            $(this).css("background-color", "#e0f7fa");
+          })
+          .on("mouseleave", "tr", function () {
+            $(this).css("background-color", "");
+          });
+      });
+    </script>
+  </body>
+</html>

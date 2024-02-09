@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Drassana Palas-Atenea (tripulants)</title>
+    
+    <!--<script type="text/javascript" src="PalasAteneaConstants.js"></script>-->
+
+    <script type="module" src="./inicialitzadors/tripulantsInicialitzador.js"></script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>
+                <p id="checkboxsDepartaments">moniato</p>
+            </td>
+            <td style="padding-left: 100px;">
+                <button type="button" id="btnTripulantsAlMap">Ficar tripulants al map</button>
+                <br><br>
+                <button type="button" id="btnVeureTripulantsDelMap">Veure tripulants del map</button> <button type="button" id="btnTripulantsForaDelMap">Treure tripulants del map</button>
+                <br><br>
+                <button type="button" id="btnTripulacioVsMapaTripulants">¿Tripulants (PalasAtenea.tripulants) en el map (PalasAtenea.mapaTripulants)?</button>
+            </td>
+        </tr>
+    </table>
+
+    <br><br>
+
+    <table id="taulaDadesTripulants" border="1"></table>
+
+
+    <script type="module">
+        //PER CULPA DEL DOM EL CODI JAVASCRIPT S'HA DE FICAR DESPRÉS DE CARREGAR PER PANTALLA TOTS ELS
+        //ELEMENTS HTML PERQUE SI NO EL DOM INTENTA ACCEDIR, AMB getElementById(), A UNS ELEMENTS QUE
+        //ENCARA NO EXISTEIXEN. 
+
+        //import {PalasAtenea} from "./inicialitzadors/PalasAteneaInicialitzador.js";
+        // PODEM ACCEDIR A PalasAtenea DIRECTAMENT.
+        // ALERTA!!!: aquest PalasAtenea no és el mateix que s'ha creat en PalasAtenea.html.
+
+        import * as tripulants from "./inicialitzadors/tripulantsInicialitzador.js";      
+        // PER ACCEDIR A QUALSEVOL CONTINGUT EXPORTAT DE tripulantsInicialitzador.js (QUALSEVOL COSA QUE 
+        // TINGUI EL export AL DAVANT) S'HA DE FER tripulantsInicialitzador.loQueSigui .
+
+        tripulants.crearCheckboxsDepartaments();
+
+        let btnTripulantsAlMap = document.getElementById("btnTripulantsAlMap");
+        btnTripulantsAlMap.addEventListener("click", function() {tripulants.tripulantsAlMap();});
+
+        let btnVeureTripulantsDelMap = document.getElementById("btnVeureTripulantsDelMap");
+        btnVeureTripulantsDelMap.addEventListener("click", function() {tripulants.veureTripulantsDelMap();});
+
+        let btnTripulantsForaDelMap = document.getElementById("btnTripulantsForaDelMap");
+        btnTripulantsForaDelMap.addEventListener("click", function() {tripulants.tripulantsForaDelMap();});
+
+        let btnTripulacioVsMapaTripulants = document.getElementById("btnTripulacioVsMapaTripulants");
+        btnTripulacioVsMapaTripulants.addEventListener("click", function() {tripulants.tripulacioVsMapaTripulants();});
+
+        // Si possem qualsevol funció aquí, s'autoexecuta automàticament... per tant l'hem de tenir en un altre fitxer .js .
+    </script>
+
+</body>
+
+</html>

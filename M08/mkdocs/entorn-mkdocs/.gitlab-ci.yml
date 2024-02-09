@@ -1,0 +1,14 @@
+stages:
+  - docs
+
+pages:
+  image: python:3.8-buster
+  stage: docs
+  script:
+    - pip install mkdocs
+    - pip install mkdocs-material
+    - mkdocs build
+    - cp -r site public
+  artifacts:
+    paths:
+      - public

@@ -1,0 +1,5 @@
+dev_addr: '0.0.0.0:8000'
+site_name:  Carlos
+
+theme:
+  name: material

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Drassana Palas-Atenea</title>
+    <!--
+    <script type="module" >
+        /*
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
+        // Mirar hacia el final en "It is important to note the following:"
+        
+        import {EstacioPalasAtenea} from "./classes/EstacioPalasAtenea.js";
+
+        console.log("aaaaaaa");
+        PalasAtenea = new EstacioPalasAtenea();         // El error "PalasAtenea.html:16 Uncaught ReferenceError: PalasAtenea is not defined" és perquè PalasAtenea no té un "let" al davant.
+        document.writeln(PalasAtenea.nom);
+        console.log("PalasAtenea.nom = " + PalasAtenea.nom);
+        console.log("bbbbbb");
+        */
+    </script>
+    -->
+    
+    <!--<script type="text/javascript" src="PalasAteneaConstants.js"></script>-->
+
+    <script type="module" src="./inicialitzadors/nausInicialitzador.js"></script>
+
+    <script type="module" src="./inicialitzadors/pecesDeRecanviInicialitzador.js"></script>
+
+    <!--
+    <script type="module">
+        import {EstacioPalasAtenea} from "./classes/EstacioPalasAtenea.js";
+        import {Donnager, Leonidas, Rocinante, Morrigan, Scirocco} from "./nausInicialitzador.js";
+
+        let PalasAtenea = new EstacioPalasAtenea();
+        console.log("PalasAtenea.nom = " + PalasAtenea.nom);
+        //document.writeln(PalasAtenea.nom);        // Error no es pot escriure directament. La solució és crear elements o fer servir algun del body.
+        let paragraf = document.createElement("p");
+        paragraf.innerText = PalasAtenea.nom + "\n DEPARTAMENTS: " + DEPARTAMENTS +
+                             "\n Donnager.toString(): " + Donnager.toString();
+        paragraf.style.color = "red";
+        let paragraf_1 = document.getElementById("paragrafDelBody");
+        paragraf_1.appendChild(paragraf);
+    </script>
+    -->
+</head>
+
+<body>
+    <p id="paragrafDelBody">moniato</p>
+
+    <button type="button" id="btnCarregarNausDetectades">Carregar en la llista desplegable les naus detectades</button><br><br>
+    <button type="button" id="btnVeureNausDetectades">Veure en una taula totes les naus detectades</button><br><br>
+    <button type="button" id="btnVeurePecesRecanviDrassana">Veure peces de recanvi que hi ha en la drassana</button><br><br>
+    <button type="button" id="btnVeureDemanarPecesRecanvi">Veure peces gastades de recanvi que hi ha en la drassana</button><br><br>
+    <button type="button" id="btnveureQuantitatPecesRecanviADemanar">Veure quantitats de les peces de recanvi gastades</button><br><br>
+    <button type="button" id="btnVeureDadesMollsDrassana">Veure diverses dades dels molls de la drassana</button><br><br>
+    <button type="button" id="btnVeureDadesNausDetectades">Veure dades de les naus detectades per l'estació</button><br><br><br><br>
+    <button type="button" id="btnSistemaDeSeguiment">Accedir al sistema de seguiment de naus</button><br><br><br><br>
+    <button type="button" id="btnTripulants">Accedir a la pantalla dels tripulants</button><br><br>
+
+    Naus: <select id="llistaNaus">
+        <option value="-1"> ----Clicka en el botó per carregar la llista de naus---- </option>
+    </select> Si sel·lecciones una nau es mostraran les seves dades.
+     
+    
+    <br><br>
+
+    <table id="taulaNaus" border="1"></table>
+
+
+    <script type="module">
+        //PER CULPA DEL DOM EL CODI JAVASCRIPT S'HA DE FICAR DESPRÉS DE CARREGAR PER PANTALLA TOTS ELS
+        //ELEMENTS HTML PERQUE SI NO EL DOM INTENTA ACCEDIR, AMB getElementById(), A UNS ELEMENTS QUE
+        //ENCARA NO EXISTEIXEN. 
+        import {TIPUSNAUS} from "./PalasAteneaConstants.js";
+
+        import {PalasAtenea, crearLListaDesplegableNaus, veureNausEnTaula, veurePecesRecanviDrassana, veureDemanarPecesRecanvi } from "./inicialitzadors/PalasAteneaInicialitzador.js";
+        // PODEM ACCEDIR A PalasAtenea, crearLListaDesplegableNaus, veureNausEnTaula, veurePecesRecanviDrassana, veureDemanarPecesRecanvi DIRECTAMENT.
+        // Al fer un import del fitxer PalasAteneaInicialitzador.js allà hi pot haver codi que s'executi al llegir el fitxer (les 4 linies entre els import i la 1a funció).
+
+        //import {veureDadesMollsDrassana } from "./drassanaInicialitzador.js";     // SÍ QUE FUNCIONA.
+        // PODEM ACCEDIR A veureDadesMollsDrassana DIRECTAMENT.
+        //import "./drassanaInicialitzador.js";   //ERROR: PETA.
+        import * as drassanaInicialitzador from "./inicialitzadors/drassanaInicialitzador.js";      // SÍ QUE FUNCIONA. ÉS UNA ALTRE FORMA.
+        // PER ACCEDIR A QUALSEVOL CONTINGUT EXPORTAT DE drassanaInicialitzador.js (QUALSEVOL COASA QUE TINGUI EL export AL DAVANT) S'HA 
+        // DE FER drassanaInicialitzador.loQueSigui .
+
+
+        let btnCarregarNausDetectades = document.getElementById("btnCarregarNausDetectades");
+        btnCarregarNausDetectades.addEventListener("click", crearLListaDesplegableNaus);
+
+        let llistaDesplegableNaus = document.getElementById("llistaNaus");
+        //llistaDesplegableNaus.addEventListener("change", veureNausEnTaula, llistaNaus.value);       // NO FUNCIONA PER A PASSAR COM A PARÀMTRE llistaNaus.value .
+        llistaDesplegableNaus.addEventListener("change", function() {veureNausEnTaula(llistaNaus.value);});
+
+        let btnVeureNausDetectades = document.getElementById("btnVeureNausDetectades");
+        btnVeureNausDetectades.addEventListener("click", veureNausEnTaula);
+
+        let btnVeurePecesRecanviDrassana = document.getElementById("btnVeurePecesRecanviDrassana");
+        btnVeurePecesRecanviDrassana.addEventListener("click", veurePecesRecanviDrassana);
+
+        let btnVeureDemanarPecesRecanvi = document.getElementById("btnVeureDemanarPecesRecanvi");
+        btnVeureDemanarPecesRecanvi.addEventListener("click", veureDemanarPecesRecanvi);
+
+        let btnVeureDadesMollsDrassana = document.getElementById("btnVeureDadesMollsDrassana");
+        btnVeureDadesMollsDrassana.addEventListener("click", function() {drassanaInicialitzador.veureDadesMollsDrassana(PalasAtenea);});
+
+        let btnveureQuantitatPecesRecanviADemanar = document.getElementById("btnveureQuantitatPecesRecanviADemanar");
+        btnveureQuantitatPecesRecanviADemanar.addEventListener("click", function() {drassanaInicialitzador.veureQuantitatPecesRecanviADemanar(PalasAtenea);});
+
+        let btnVeureDadesNausDetectades = document.getElementById("btnVeureDadesNausDetectades");
+        btnVeureDadesNausDetectades.addEventListener("click", function() {PalasAtenea.veureNausDetectades();});
+
+        let btnSistemaDeSeguiment = document.getElementById("btnSistemaDeSeguiment");
+        btnSistemaDeSeguiment.addEventListener("click", function() {
+            //localStorage.setItem('PalasAtenea', PalasAtenea);     // ERROR!!!: localStorage només pot emmagatzemar string's.
+                                                                    // ¿Com li passem a sistemaDeSeguiment.html el PalasAtena creat aquí?
+            window.open("sistemaDeSeguiment.html");
+        });
+
+        let btnTripulants = document.getElementById("btnTripulants");
+        btnTripulants.addEventListener("click", function() {window.open("tripulants.html");});
+
+        // Si possem qualsevol funció aquí, s'autoexecuta automàticament... per tant l'hem de tenir en un altre fitxer .js .
+        
+    </script>
+    
+
+</body>
+
+</html>

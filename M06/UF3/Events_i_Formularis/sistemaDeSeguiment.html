@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de seguiment de Palas-Atenea</title>
+
+    <style>
+        div.divPantallaSeguiment {
+            position: relative;
+            top: 2px;
+            right: 2px;
+            width: 1000px;
+            height: 800px;
+            border: 3px solid #73AD21;
+            background-color: black;
+        } 
+
+        div.divBotonsSeguiment {
+            position: relative;
+            top: -3px;
+            right: -1004px;
+            width: 200px;
+            height: 800px;
+            border: 3px solid #73AD21;
+            text-align: center;
+        } 
+
+        img.absolute {
+            position: absolute;
+        }
+
+        canvas.absolute {
+            position: absolute;
+        }
+
+        #paragrafTipusNaus {
+            text-align: left;
+        }
+    </style>
+    
+    <script type="text/javascript" >
+        function carregarLocalstorage() {
+            /*ERROR: localStorage només pot emmagatzemar string's, no podem passar objectes.
+            PalasAtenea = {};
+            PalasAtenea = localStorage.getItem('PalasAtenea');
+            console.log("PalasAtenea = " + PalasAtenea);
+            */
+        }
+    </script>
+    
+    <!--<script type="text/javascript" src="PalasAteneaConstants.js"></script>-->
+
+</head>
+
+<body onload="carregarLocalstorage()">
+    <div class="divPantallaSeguiment" id="divPantallaSeguiment">
+        <canvas id="raigLaser" width="1000" height="800" style="border:5px solid #d3d3d3; ;" class="absolute"></canvas>
+        <div class="divBotonsSeguiment" id="divBotonsSeguiment">
+            <button type="button" id="btnCalcularSolucioDeTir" disabled>Calcular solució de tir</button>
+            <br><br>
+            <textarea cols="22" rows="13" id="textAreaId"></textarea>
+            <br><br>
+            <button type="button" id="btnDispararRaigLaser" disabled>Disparar raig làser</button>
+            <br><br>
+            <p id="paragrafTipusNaus">
+                SEGUIMENT NAUS TIPUS<br>
+            </p>
+            <input type="text" id="nauMarcadaComObjectiuPosX" hidden>
+            <input type="text" id="nauMarcadaComObjectiuPosY" hidden>
+            <input type="text" id="nauMarcadaComObjectiuId" hidden>
+        </div>
+    </div>
+    
+
+    <script type="module">
+        //PER CULPA DEL DOM EL CODI JAVASCRIPT S'HA DE FICAR DESPRÉS DE CARREGAR PER PANTALLA TOTS ELS
+        //ELEMENTS HTML PERQUE SI NO EL DOM INTENTA ACCEDIR, AMB getElementById(), A UNS ELEMENTS QUE
+        //ENCARA NO EXISTEIXEN. 
+        import {TIPUSNAUS, pathImatges} from "./PalasAteneaConstants.js";
+
+        import {PalasAtenea} from "./inicialitzadors/PalasAteneaInicialitzador.js";
+        // PODEM ACCEDIR A PalasAtenea DIRECTAMENT. ALERTA!!!!: ¿aquest objecte PalasAtenea és el mateix que es va crear a l'executar PalasAtenea.html?
+
+        import * as sistemaDeSeguiment from "./sistemaDeSeguiment.js";
+        // PER ACCEDIR A QUALSEVOL CONTINGUT EXPORTAT DE sistemaDeSeguiment.js (QUALSEVOL COSA QUE TINGUI EL export AL 
+        // DAVANT) S'HA DE FER sistemaDeSeguiment.loQueSigui .
+
+        // Si possem qualsevol funció aquí, s'autoexecuta automàticament.
+        sistemaDeSeguiment.pintarNausIEstacio(PalasAtenea);
+
+        sistemaDeSeguiment.pintarCheckboxTipusNaus(PalasAtenea);
+
+        let btnCalcularSolucioDeTir = document.getElementById("btnCalcularSolucioDeTir");
+        btnCalcularSolucioDeTir.addEventListener("click", function() {sistemaDeSeguiment.calcularSolucioDeTir();});
+
+        let btnDispararRaigLaser = document.getElementById("btnDispararRaigLaser");
+        btnDispararRaigLaser.addEventListener("click", function() {sistemaDeSeguiment.dispararRaigLaser();});
+        
+        // Si possem qualsevol funció aquí, s'autoexecuta automàticament... per tant l'hem de tenir en un altre fitxer .js .
+    </script>
+
+</body>
+
+</html>
