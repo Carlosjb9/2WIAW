@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CineHoy</title>
-    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
@@ -24,14 +24,11 @@
       rel="stylesheet"
       href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css"
     />
-    <!-- DataTables CSS -->
     <link
       rel="stylesheet"
       type="text/css"
       href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css"
     />
-
-    <!-- Agregando las nuevas versiones de jQuery y DataTables -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <link
       rel="stylesheet"
@@ -60,86 +57,6 @@
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
   </head>
-
-  <style>
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon:after {
-      content: ">";
-      font-size: 55px;
-      color: rgb(163, 36, 36);
-    }
-
-    .carousel-control-prev-icon:after {
-      content: "<";
-      font-size: 55px;
-      color: rgb(163, 36, 36);
-    }
-
-    .carousel-item img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      margin: auto;
-      max-height: 400px;
-      max-width: 300px;
-    }
-
-    .navbar-brand {
-      font-weight: bold;
-    }
-
-    .navbar-nav {
-      margin-left: auto;
-    }
-
-    .navbar-toggler {
-      border: 2px solid rgb(163, 36, 36);
-    }
-
-    .navbar-toggler-icon {
-      background-color: rgb(163, 36, 36);
-    }
-
-    .logo {
-      margin-left: auto;
-    }
-
-    .backImg {
-      background-color: #f8f9fa;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 10px;
-    }
-
-    .estrenos {
-      font-size: 24px;
-      font-weight: bold;
-      color: rgb(163, 36, 36);
-    }
-
-    .estrenos2 {
-      font-size: 32px;
-      font-weight: bold;
-      color: rgb(163, 36, 36);
-    }
-
-    .table-responsive {
-      margin-top: 20px;
-    }
-
-    #contacto {
-      background-color: #f8f9fa;
-      padding: 20px;
-      margin-top: 20px;
-      border-top: 1px solid rgb(163, 36, 36);
-    }
-    td.img img {
-      max-width: 250px;
-      max-height: 300px;
-      display: block;
-      margin: auto;
-    }
-  </style>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -391,14 +308,17 @@
             { name: "Rating" },
             { name: "Checkbox" },
           ],
+          responsive: true,
         });
 
+        // Delete third row in table
         table.row(2).remove().draw();
 
+        // Button that create new row with data
         $("#target").on("click", function () {
           var tr = $(
             "<tr><td class='img'>" +
-              "<img src='https://media.istockphoto.com/id/1145179413/es/vector/cinta-roja-con-la-inscripcion-new-ilustracion-vectorial.jpg?s=612x612&w=0&k=20&c=4H-_LxLh1VwMgo5bJdtRTW7_O7tFXUEcBM48I1fQuqg=' />" +
+              "<img src='https://pics.filmaffinity.com/Deadpool-551207887-large.jpg' />" +
               "</td>" +
               "<td>New Line</td>" +
               "<td>2024</td>" +
@@ -416,6 +336,7 @@
           $(tr).hide().insertAfter("tr:last").fadeIn(1000);
         });
 
+        // Remove row selected
         $("#remove").on("click", function () {
           $("input[type=checkbox]:checked").each(function () {
             var row = $(this).closest("tr");
@@ -425,13 +346,39 @@
           });
         });
 
+        // Hover background color
         $("#example tbody")
           .on("mouseenter", "tr", function () {
-            $(this).css("background-color", "#e0f7fa");
+            $(this).find("td").css("background-color", "#e0f7fa");
           })
           .on("mouseleave", "tr", function () {
-            $(this).css("background-color", "");
+            $(this).find("td").css("background-color", "");
           });
+
+        // Hover border color
+        $("#example tbody tr").hover(
+          function () {
+            $(this).addClass("highlighted-row");
+          },
+          function () {
+            $(this).removeClass("highlighted-row");
+          }
+        );
+
+        // Zoom for img when enter and hover
+        $(".img img").on("mouseenter", function () {
+          $(this).css({
+            transform: "scale(1.1)",
+            transition: "transform 0.3s ease",
+          });
+        });
+
+        $(".img img").on("mouseleave", function () {
+          $(this).css({
+            transform: "scale(1)",
+            transition: "transform 0.3s ease",
+          });
+        });
       });
     </script>
   </body>

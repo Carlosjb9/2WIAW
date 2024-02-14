@@ -69,8 +69,25 @@ PalasAtenea.tripulacio.push(
 function obrirFormulari(tripulant) {
   var url = "formulariTripulant.html";
   localStorage.setItem("tripulant", tripulant);
-  newWindow = window.open("formulariTripulant.html");
-  
+  var newWindow = window.open("formulariTripulant.html");
+  var tripulant = localStorage.getItem("tripulant");
+  var id = tripulant.getId();
+  var nom = tripulant.getNom();
+  var cognom = tripulant.getCognom();
+  var carrec = tripulant.getCarrec();
+  var departament = tripulant.getDepId();
+  var actiu = tripulant.getActiu();
+  var nau = tripulant.getNauId();
+  var personal = tripulant.getDeDressana();
+
+  document.getElementById("id").setAttribute(value, id);
+  document.getElementById("nom").setAttribute(value, nom);
+  document.getElementById("id").setAttribute(value, cognom);
+  document.getElementById("carrec").setAttribute(value, carrec);
+  document.getElementById("departament").setAttribute(value, departament);
+  document.getElementById("actiu").setAttribute(value, actiu);
+  document.getElementById("nau").setAttribute(value, nau);
+  document.getElementById("personal").setAttribute(value, personal);
 }
 
 function pintarTripulantEnTaula(tripulantTmp) {

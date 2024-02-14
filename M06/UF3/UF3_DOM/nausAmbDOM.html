@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Drassana Palas-Atenea</title>
+ 
+    <script type="module" src="./inicialitzadors/nausAmbDOMInicialitzador.js"></script>
+</head>
+
+<body>
+    <p id="paragrafDelBody">Larga viva a Marte</p>
+    <img src="imatges/mcrn.jpg" width="320" height="180">
+    <br>
+    <br>
+
+    <button type="button" id="btnCopiarRutaImatges">Copiar les rutes de les imatges</button><br><br>
+    <button type="button" id="btnAssignarTripulantsANaus">Veure tripulants assignats a cada nau</button><br><br>
+
+    <table id="taulaNaus" border="1"></table>
+
+    <script type="module">
+        //PER CULPA DEL DOM EL CODI JAVASCRIPT S'HA DE FICAR DESPRÉS DE CARREGAR PER PANTALLA TOTS ELS
+        //ELEMENTS HTML PERQUE SI NO EL DOM INTENTA ACCEDIR, AMB getElementById(), A UNS ELEMENTS QUE
+        //ENCARA NO EXISTEIXEN. 
+
+        import * as nausAmbDOM from "./inicialitzadors/nausAmbDOMInicialitzador.js"; 
+
+
+        window.addEventListener("load", nausAmbDOM.veureNausEnTaula);
+
+        let btnCopiarRutaImatges = document.getElementById("btnCopiarRutaImatges");
+        btnCopiarRutaImatges.addEventListener("click", nausAmbDOM.copiarRutaImatges);
+
+        let btnAssignarTripulantsANaus = document.getElementById("btnAssignarTripulantsANaus");
+        btnAssignarTripulantsANaus.addEventListener("click", function() {
+            let veureNoAssignats = confirm("¿Vols veure els tripulants no assignats a cap nau?");
+
+            nausAmbDOM.assignarTripulantsANaus(veureNoAssignats);
+        });
+
+
+        // Si possem qualsevol funció aquí, s'autoexecuta automàticament... per tant l'hem de tenir en un altre fitxer .js .
+    </script>
+    
+
+</body>
+
+</html>
