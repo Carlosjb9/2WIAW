@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+  </head>
+  <body>
+    <style>
+      .vermell {
+        color: red;
+      }
+    </style>
+    <p id="p">Hola Patata</p>
+    <br />
+    <button id="afegirText" type="button" value="AfegirText">
+      Afegir Text
+    </button>
+    <br />
+    <button id="afegirImg" type="button" value="AfegirImatge">
+      Afegir Imatge
+    </button>
+    <br />
+    <button id="canviarImg" type="button" value="CanviarImg">
+      Canviar Imatge
+    </button>
+    <br />
+    <button id="canviarMidaMcrn" type="button" value="CanviarMidaMcrn">
+      Canviar Mida Mcrn
+    </button>
+    <br />
+    <button id="esborrarImg" type="button" value="esborrarImg">
+      Esborrar Imatges
+    </button>
+    <br />
+    <button id="afegirClasse" type="button" value="afegirClasse">
+      Afegir Classe
+    </button>
+    <script>
+      var p = document.getElementById("p");
+      var newImg =
+        "<br><img src='imatges_pels_alumnes/Donnager_petit.png' onmouseover=\"alert('Mouseover')\" onclick=\"alert('Click')\"/>";
+      document
+        .getElementById("afegirImg")
+        .addEventListener("click", function () {
+          p.innerHTML += newImg;
+        });
+
+      // afegir text paragraf
+      var count = 0;
+      var ptext = p.textContent;
+      document
+        .getElementById("afegirText")
+        .addEventListener("click", function () {
+          count++;
+          p.textContent = "Marte ha llegado " + count + " " + ptext;
+        });
+      // Canviar imatge
+
+      document
+        .getElementById("canviarImg")
+        .addEventListener("click", function () {
+          var imatges = document.querySelectorAll("img");
+          imatges[1].src = "imatges_pels_alumnes/mcrn_petit.jpg";
+        });
+      // Canviar mida mcrn
+      document
+        .getElementById("canviarMidaMcrn")
+        .addEventListener("click", function () {
+          var mcrnImg = document.querySelector(
+            '[src="imatges_pels_alumnes/mcrn_petit.jpg"]'
+          );
+          mcrnImg.style.height = "200px";
+        });
+      // Esborrar imatges
+      document
+        .getElementById("esborrarImg")
+        .addEventListener("click", function () {
+          var totesImg = document.querySelectorAll("#p img");
+          var totesImgArray = Array.from(totesImg);
+          totesImgArray.forEach(function (img) {
+            img.remove();
+          });
+        });
+      // Afegir classe
+      document
+        .getElementById("afegirClasse")
+        .addEventListener("click", function () {
+          if (!p.classList.contains("vermell")) {
+            p.classList.add("vermell");
+          }
+        });
+    </script>
+  </body>
+</html>

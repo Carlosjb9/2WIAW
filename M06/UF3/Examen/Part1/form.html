@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulari</title>
+    <style>
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="altaNausForm">
+      <h2>Formulari d'Alta de Naus</h2>
+      <label for="nom">Nom i cognoms:</label>
+      <input
+        type="text"
+        id="nom"
+        name="nom"
+        pattern="[A-Za-zÀ-ÿ\s]+"
+        required
+      />
+
+      <label for="dni">Dni:</label>
+      <input
+        type="text"
+        id="dni"
+        name="dni"
+        pattern="[0-9]{8}"
+        minlength="8"
+        maxlength="8"
+        required
+      />
+
+      <label for="letra">Lletra del dni:</label>
+      <input
+        type="text"
+        id="letra"
+        name="letra"
+        pattern="[A-Za-z]{1}"
+        minlength="1"
+        maxlength="1"
+        required
+      />
+
+      <label for="departament">Departament:</label>
+      <select id="departament" name="departament" required>
+        <option value="" disabled selected>
+          - Selecciona un departament -
+        </option>
+        <option value="comandament">Comandament</option>
+        <option value="maquines">Màquines</option>
+        <option value="electronica">Electrònica</option>
+        <option value="medicina">Medicina</option>
+        <option value="pilot">Pilot</option>
+      </select>
+
+      <label for="estudis">Estudis:</label>
+      <select id="estudis" name="estudis" required>
+        <option value="" disabled selected>- Selecciona un estudi -</option>
+        <option value="universitat">Universitat</option>
+        <option value="grauSuperior">FP grau superior</option>
+        <option value="grauMitja">FP grau mitjà</option>
+      </select>
+
+      <button id="submit" type="submit">Enviar</button>
+    </form>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        //Focus dni
+        document.getElementById("dni").focus();
+
+        // Si la lletra del dni es incorrecta
+        var letraInput = document.getElementById("letra");
+
+        letraInput.addEventListener("blur", function () {
+          var letraValue = this.value;
+          let cadena = "TRWAGMYFPDXBNJZSQVHLCKET";
+          var dni = document.getElementById("dni").value;
+          dni = parseInt(dni);
+          let posicion = dni % 23;
+          if (cadena[posicion] != letraValue) {
+            alert("La letra del dni es incorrecta");
+          }
+        });
+
+        // Comprovar si el nom i cognom son correctes
+        submit.addEventListener("click", function (e) {
+          var nomInput = document.getElementById("nom");
+          var submit = document.getElementById("submit");
+          var nomValue = nomInput.value;
+          var cadenaSpliteada = nomValue.split(" ");
+
+          /*
+          console.log(cadenaSpliteada.length);
+          console.log(cadenaSpliteada[0]);
+          console.log(cadenaSpliteada[1]);
+          console.log(cadenaSpliteada[2]);
+          */
+          if (cadenaSpliteada.length == 3) {
+            var letraNom = cadenaSpliteada[0].charAt(0);
+            var letra1Cognom = cadenaSpliteada[1].charAt(0);
+            var letra2Cognom = cadenaSpliteada[2].charAt(0);
+            if (
+              (cadenaSpliteada[0],
+              cadenaSpliteada[1],
+              cadenaSpliteada[2] == undefined ||
+                letraNom != letraNom.toUpperCase() ||
+                letra1Cognom != letra1Cognom.toUpperCase() ||
+                letra2Cognom != letra2Cognom.toUpperCase())
+            ) {
+              e.preventDefault();
+              nomInput.focus();
+              alert("Error nom formulario");
+            }
+          } else {
+            e.preventDefault();
+            nomInput.focus();
+            alert("Error nom formulario");
+          }
+
+          /*
+          console.log(letraNom + " igual a " + letraNom.toUpperCase());
+          console.log(letra1Cognom + " igual a " + letra1Cognom.toUpperCase());
+          console.log(letra2Cognom + " igual a " + letra2Cognom.toUpperCase());
+          */
+
+          if (
+            (cadenaSpliteada.length < 3 || cadenaSpliteada[0],
+            cadenaSpliteada[1],
+            cadenaSpliteada[2] == undefined ||
+              letraNom != letraNom.toUpperCase() ||
+              letra1Cognom != letra1Cognom.toUpperCase() ||
+              letra2Cognom != letra2Cognom.toUpperCase())
+          ) {
+            e.preventDefault();
+            nomInput.focus();
+            alert("Error nom formulario");
+          }
+
+          // Comprovar si el departament i estudis son correctes
+          var departament = document.getElementById("departament").value;
+          var estudis = document.getElementById("estudis").value;
+          var departamentUni = ["comandament", "electronica", "pilot"];
+          var departamentFPS = ["maquines", "electronica", "medicina"];
+          var departamentFPM = ["medicina"];
+          console.log(estudis);
+          console.log(!(departament in departamentFPM));
+          if (
+            (estudis == "universitat" &&
+              !departamentUni.includes(departament)) ||
+            (estudis == "grauSuperior" &&
+              !departamentFPS.includes(departament)) ||
+            (estudis == "grauMitja" && !departamentFPM.includes(departament))
+          ) {
+            e.preventDefault();
+            alert("Error departament/estudis formulario");
+          }
+        });
+
+        window.addEventListener("resize", function () {
+          var screenWidth = window.innerWidth;
+          var screenHeight = window.innerHeight;
+          var medidaVentana = screenHeight + " x " + screenHeight;
+
+          if ((screenWidth, screenHeight < 300)) {
+            window.removeEventListener("resize");
+          }
+          alert("Modificada mida a " + medidaVentana);
+        });
+
+        document.getElementById("dni").addEventListener("wheel", function () {
+          alert("Rodeta moguda sobre dni");
+        });
+      });
+    </script>
+  </body>
+</html>
