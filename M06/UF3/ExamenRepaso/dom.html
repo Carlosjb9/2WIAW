@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+.vermell {
+    color: red;
+}
+</style>
+
+<img src="Donnager_petit.png" alt="Girl in a jacket" width="500" height="600">
+<p class="vermell">Hola</p>
+<img src="Donnager_petit.png" id="img2" alt="Girl in a jacket" width="500" height="600">
+<p class="vermell">Que</p>
+<img src="Donnager_petit.png" alt="Girl in a jacket" width="500" height="600">
+<p class="vermell">Tal</p>
+
+</body>
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var allpars = document.getElementsByTagName("p");
+    var allparsArray = Array.from(allpars);
+
+    allparsArray.forEach(function(parrafo) {
+        parrafo.remove();
+    });
+
+    var newP = document.createElement("p");
+    var img2 = document.getElementById("img2");
+
+    newP.textContent = "Viva Marte";
+
+    img2.insertAdjacentElement('afterend', newP);
+    
+    var newImg = document.createElement("img");
+    newImg.setAttribute("src", "mcrn_petit.jpg");
+    newImg.setAttribute("width", "500");
+    newImg.setAttribute("height", "600");
+
+    newP.addEventListener('mouseover', function() {
+        alert('onmouseover activate');
+    });
+
+    newP.addEventListener('click', function() {
+        alert('onmouseover activate');
+    });
+
+    if (!newP.classList.contains("vermell")) {
+        newP.classList.add("vermell");
+    }
+
+    img2.src = "mcrn_petit.jpg";
+    img2.style.height = '200px';
+});
+</script>

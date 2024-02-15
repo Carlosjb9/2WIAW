@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulari d'Alta de Naus</title>
+<style>
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+
+<form id="altaNausForm">
+    <h2>Formulari d'Alta de Naus</h2>
+    <label for="nom">Nom:</label>
+    <input type="text" id="nom" name="nom" pattern="[A-Za-zÀ-ÿ\s]+" required>
+
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id" pattern="(AC|CC|DD|FF|CO)-\d{1,4}" required>
+
+    <label for="tipus">Tipus:</label>
+    <select id="tipus" name="tipus" required>
+        <option value="" disabled selected>- Selecciona un tipus -</option>
+        <option value="cuirassat">Cuirassat</option>
+        <option value="creuer">Creuer</option>
+        <option value="destructor">Destructor</option>
+        <option value="fragata">Fragata</option>
+        <option value="corbeta">Corbeta</option>
+    </select>
+
+    <h3>Especificacions:</h3>
+    <label for="longitud">Longitud (m):</label>
+    <input type="text" id="longitud" name="longitud" required>
+
+    <label for="tonelatge">Tonelatge:</label>
+    <input type="number" id="tonelatge" name="tonelatge" required>
+
+    <label for="tripulacioMin">Tripulació mínima:</label>
+    <input type="number" id="tripulacioMin" name="tripulacioMin" required>
+
+    <label for="tripulacioStandart">Tripulació estàndard:</label>
+    <input type="number" id="tripulacioStandart" name="tripulacioStandart" required>
+
+    <button type="submit">Enviar</button>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('id').focus();
+        alert('Benvingut al sistema d\'altes de naus de Mart');
+
+        window.addEventListener('resize', function() {
+            alert('Modificada mida');
+        });
+
+        document.getElementById('nom').addEventListener('wheel', function() {
+            alert('Rodeta moguda sobre nom');
+        });
+
+        document.getElementById('id').addEventListener('change', function() {
+            var idInput = this.value;
+            var idPattern = /^(AC|CC|DD|FF|CO)-\d{1,4}$/;
+            if (!idPattern.test(idInput)) {
+                alert('El format de l\'ID no és correcte. Ha de ser AC/CC/DD/FF/CO-segons-format');
+                this.value = ''; // Limpiar el valor incorrecto
+                this.focus();
+            }
+        });
+
+        document.getElementById('altaNausForm').addEventListener('submit', function(event) {
+            var nomInput = document.getElementById('nom').value;
+            if (nomInput.length < 3) {
+                alert('El nom de la nau ha de tenir com a mínim 3 lletres.');
+                event.preventDefault(); // Evitar que el formulario se envíe
+                document.getElementById('nom').focus();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
