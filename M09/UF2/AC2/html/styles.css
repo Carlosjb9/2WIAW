@@ -125,3 +125,89 @@ img {
   max-width: 20%;
   height: auto;
 }
+
+#example tbody tr:hover {
+  background-color: #3ad6eb !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon:after {
+  content: ">";
+  font-size: 55px;
+  color: rgb(163, 36, 36);
+}
+
+.carousel-control-prev-icon:after {
+  content: "<";
+  font-size: 55px;
+  color: rgb(163, 36, 36);
+}
+
+.carousel-item img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  max-height: 400px;
+  max-width: 300px;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.navbar-toggler {
+  border: 2px solid rgb(163, 36, 36);
+}
+
+.navbar-toggler-icon {
+  background-color: rgb(163, 36, 36);
+}
+
+.logo {
+  margin-left: auto;
+}
+
+.backImg {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.estrenos {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(163, 36, 36);
+}
+
+.estrenos2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: rgb(163, 36, 36);
+}
+
+.table-responsive {
+  margin-top: 20px;
+}
+
+#contacto {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-top: 20px;
+  border-top: 1px solid rgb(163, 36, 36);
+}
+td.img img {
+  max-width: 250px;
+  max-height: 300px;
+  display: block;
+  margin: auto;
+}
+
+.highlighted-row {
+  border: 2px solid rgb(255, 0, 0);
+}

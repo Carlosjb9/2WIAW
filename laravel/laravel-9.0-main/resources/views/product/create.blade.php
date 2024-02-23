@@ -3,7 +3,12 @@
 <main class="container">
     <div class="content">
         <h1>Insert new Product</h1>
-        <form action="/product/create" method="post">
+         @if ($msg)
+            <div class="alert alert-success" role="alert">
+                Add new product to the database
+            </div>
+         @endif 
+        <form action="/product/newProduct" method="post">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Enter name product">

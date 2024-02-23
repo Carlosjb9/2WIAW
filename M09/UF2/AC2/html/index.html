@@ -159,8 +159,14 @@
       </h2>
     </div>
     <div>
-      <button id="target">Nueva fila</button>
-      <button id="remove">Eliminar filas seleccionadas</button>
+      <button id="target" class="btn btn-primary">Nueva fila</button>
+      <button id="remove" class="btn btn-danger">
+        Eliminar filas seleccionadas
+      </button>
+      <button id="loadJson" class="btn btn-success">Cargar desde JSON</button>
+      <button id="loadDBB" class="btn btn-info">
+        Cargar desde la Base de Datos
+      </button>
     </div>
     <div class="container">
       <h3 class="text-center">Cartelera</h3>
@@ -377,6 +383,84 @@
           $(this).css({
             transform: "scale(1)",
             transition: "transform 0.3s ease",
+          });
+        });
+
+        $("#loadJson").click(function () {
+          $.ajax({
+            url: "./dades.json",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+              $("#example tbody").empty();
+
+              $.each(data, function (index, movie) {
+                var newRow =
+                  "<tr>" +
+                  "<td class='img'><img src='" +
+                  movie.img +
+                  "'/></td>" +
+                  "<td>" +
+                  movie.titol +
+                  "</td>" +
+                  "<td>" +
+                  movie.anyo +
+                  "</td>" +
+                  "<td>" +
+                  movie.director +
+                  "</td>" +
+                  "<td>" +
+                  movie.actores +
+                  "</td>" +
+                  "<td>" +
+                  movie.duracion +
+                  "</td>" +
+                  "<td>" +
+                  movie.genero +
+                  "</td>" +
+                  "<td>" +
+                  movie.pais +
+                  "</td>" +
+                  "<td>" +
+                  movie.idioma +
+                  "</td>" +
+                  "<td>" +
+                  movie.premios +
+                  "</td>" +
+                  "<td>" +
+                  movie.valoracion +
+                  "</td>" +
+                  "<td><input type='checkbox' value='' /></td>" +
+                  "</tr>";
+                $("#example tbody").append(newRow);
+              });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              console.log(
+                "Error al cargar datos desde el archivo JSON: " + errorThrown
+              );
+            },
+          });
+        });
+        $("#loadDBB").click(function () {
+          // Limpiar la tabla antes de cargar los datos
+          $("#example").DataTable().clear().draw();
+
+          // Realizar solicitud AJAX para obtener los datos desde el servidor
+          $.ajax({
+            url: "getMovies.php",
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+              // Agregar los datos a la tabla existente
+              $("#example").DataTable().rows.add(data.movies).draw();
+            },
+            error: function (xhr, error, thrown) {
+              console.error(
+                "Error al cargar los datos desde el servidor:",
+                error
+              );
+            },
           });
         });
       });
